@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Flooring Trader</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="logo.png" alt="B2B Flooring Trader" style="height: 40px;">
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="I am looking for...">
+                <button class="search-btn" id="search-btn">Search</button>
+            </div>
+            <div class="user-actions">
+                <span class="action-icon" id="compare-count">Compare (0)</span>
+                <span class="action-icon" id="wishlist-count">Wishlist (0)</span>
+                <span class="action-icon" id="cart-count">Cart (0)</span>
+                <a href="cart.html" class="action-icon">View Cart</a>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="sellers.html" id="nav-sellers">Sellers</a></li>
+                <li><a href="brands.html" id="nav-brands">All Brands</a></li>
+                <li><a href="categories.html" id="nav-categories">All Categories</a></li>
+                <li><a href="products.html" id="nav-products">Products</a></li>
+                <li><a href="services.html" id="nav-services">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb" id="breadcrumb">
+        <!-- Breadcrumb will be dynamically populated -->
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- New Products Section -->
+        <section class="new-products">
+            <div class="section-header">
+                <h2>New Products</h2>
+                <a href="products.html" class="all-products-btn">All New Products</a>
+            </div>
+            <!-- Swiper Carousel -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper" id="product-list">
+                    <!-- Product 1 -->
+                    <div class="swiper-slide" data-product-id="1">
+                        <div class="product-card">
+                            <a href="product.html?id=1">
+                                <img src="iphones.png" alt="IPhone">
+                                <h3>ZMW29999.12</h3>
+                                <p>Apple iPhone 15 Pro Max 256GB</p>
+                                <div class="rating">★★★★★</div>
+                            </a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-product-id="1">Add to Cart</button>
+                                <button class="add-to-wishlist" data-product-id="1">Add to Wishlist</button>
+                                <button class="add-to-compare" data-product-id="1">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="swiper-slide" data-product-id="2">
+                        <div class="product-card">
+                            <a href="product.html?id=2">
+                                <img src="Aurora.jpg" alt="Aurora ii">
+                                <h3>ZMW4,068.71</h3>
+                                <p>G-Shock</p>
+                                <div class="rating">★★★★★</div>
+                            </a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-product-id="2">Add to Cart</button>
+                                <button class="add-to-wishlist" data-product-id="2">Add to Wishlist</button>
+                                <button class="add-to-compare" data-product-id="2">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="swiper-slide" data-product-id="3">
+                        <div class="product-card">
+                            <a href="product.html?id=3">
+                                <img src="skirtings.jpg" alt="Skirting">
+                                <h3>ZMW456.41</h3>
+                                <p>Skirting and quarter rounds (Sold Separately)</p>
+                                <div class="rating">★★★★★</div>
+                            </a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-product-id="3">Add to Cart</button>
+                                <button class="add-to-wishlist" data-product-id="3">Add to Wishlist</button>
+                                <button class="add-to-compare" data-product-id="3">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="swiper-slide" data-product-id="4">
+                        <div class="product-card">
+                            <a href="product.html?id=4">
+                                <img src="mdf.jpg" alt="Transition">
+                                <h3>ZMW394.85</h3>
+                                <p>MDF Luxwrap Transition Laminates</p>
+                                <div class="rating">★★★★★</div>
+                            </a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-product-id="4">Add to Cart</button>
+                                <button class="add-to-wishlist" data-product-id="4">Add to Wishlist</button>
+                                <button class="add-to-compare" data-product-id="4">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 5 -->
+                    <div class="swiper-slide" data-product-id="5">
+                        <div class="product-card">
+                            <a href="product.html?id=5">
+                                <img src="mdf_lux.jpg" alt="Stair-Nosing">
+                                <h3>ZMW472.61</h3>
+                                <p>MDF Luxwrap Stair-Nosing</p>
+                                <div class="rating">★★★★★</div>
+                            </a>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-product-id="5">Add to Cart</button>
+                                <button class="add-to-wishlist" data-product-id="5">Add to Wishlist</button>
+                                <button class="add-to-compare" data-product-id="5">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation Arrows -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <!-- Lead Magnet Pop-up -->
+        <div class="popup" id="lead-magnet-popup">
+            <div class="popup-content">
+                <span class="close-btn" id="close-popup-btn">×</span>
+                <h2>Get Our Free Guide!</h2>
+                <p>Download "Top 10 Flooring Trends for 2025" for free!</p>
+                <form id="lead-magnet-form">
+                    <label for="email-input">Enter your email</label>
+                    <input type="email" id="email-input" required>
+                    <button type="submit">Download Now</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
