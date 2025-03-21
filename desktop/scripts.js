@@ -1,15 +1,3 @@
-// Detect if the user is on a mobile device
-function isMobileDevice() {
-    const userAgent = navigator.userAgent.toLowerCase();
-    return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
-}
-
-// Apply mobile-view class on page load
-document.addEventListener('DOMContentLoaded', () => {
-    if (isMobileDevice()) {
-        document.body.classList.add('mobile-view');
-    }
-
 // Product Data (Simulated Database)
 const products = [
     { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Latest iPhone with 256GB storage, perfect for professionals.", image: "iphones.png", rating: "★★★★★", brandId: 5, categoryId: 6 },
