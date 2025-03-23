@@ -1,0 +1,2372 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header Styles (Desktop) */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.search-bar {
+    flex: 1;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.action-icon {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.action-icon:hover {
+    color: #0056b3;
+}
+
+/* Navigation Styles (Desktop) */
+nav {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+nav a:hover,
+nav a.active {
+    color: #007bff;
+}
+
+/* Breadcrumb Styles (Desktop) */
+.breadcrumb {
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .separator {
+    margin: 0 5px;
+    color: #666;
+}
+
+/* Main Content Styles (Desktop) */
+main {
+    padding: 20px;
+}
+
+/* Product Section (Index Page, Desktop) */
+.products {
+    padding: 20px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.view-all {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    border: 1px solid #007bff;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.view-all:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(25% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.rating {
+    color: #f39c12;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.product-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+.product-actions button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.product-actions button:hover {
+    background-color: #0056b3;
+}
+
+/* Swiper Carousel (Desktop) */
+.swiper-container {
+    padding: 20px 0;
+}
+
+.swiper-slide {
+    text-align: center;
+}
+
+/* Footer Styles (Desktop) */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #007bff;
+}
+
+.newsletter h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.newsletter form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.newsletter input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 14px;
+}
+
+.newsletter button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter button:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile-Specific Layout (Applied when mobile-view class is present) */
+body.mobile-view {
+    font-size: 14px;
+}
+
+body.mobile-view header {
+    padding: 10px;
+    position: relative;
+}
+
+body.mobile-view .header-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+body.mobile-view .logo {
+    text-align: center;
+}
+
+body.mobile-view .logo img {
+    height: 30px;
+}
+
+body.mobile-view .search-bar {
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+}
+
+body.mobile-view .search-bar input {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+body.mobile-view .search-bar button {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+body.mobile-view .user-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    justify-items: center;
+}
+
+body.mobile-view .action-icon {
+    font-size: 12px;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Navigation (Desktop) */
+nav {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+nav a:hover,
+nav a.active {
+    color: #007bff;
+}
+
+/* Hamburger Menu (Desktop) */
+.hamburger {
+    display: none;
+}
+
+/* Hamburger Menu (Mobile) */
+body.mobile-view .hamburger {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it’s above other elements */
+}
+
+/* Navigation (Mobile) */
+body.mobile-view nav {
+    display: none !important; /* Hidden by default */
+    position: fixed; /* Use fixed to ensure it doesn’t affect page width */
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Ensure it’s above other content */
+    overflow-y: auto; /* Allow vertical scrolling if menu is long */
+    max-height: calc(100vh - 60px); /* Prevent it from exceeding viewport height */
+    padding: 0;
+}
+
+body.mobile-view nav.active {
+    display: block !important; /* Show when active, with higher specificity */
+}
+
+body.mobile-view nav ul {
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+}
+
+body.mobile-view nav ul li {
+    margin: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+body.mobile-view nav ul li a {
+    display: block;
+    padding: 15px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+}
+
+body.mobile-view nav ul li a:hover,
+body.mobile-view nav ul li a.active {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+/* Breadcrumb Styles (Mobile) */
+body.mobile-view .breadcrumb {
+    display: none; /* Hide breadcrumb in mobile view to match screenshot */
+}
+
+/* Main Content Styles (Mobile) */
+body.mobile-view main {
+    padding: 10px;
+    padding-bottom: 60px; /* Space for bottom nav */
+}
+
+/* Product Section (Mobile) */
+body.mobile-view .products {
+    padding: 10px 0;
+}
+
+body.mobile-view .section-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+body.mobile-view .section-header h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .section-header h2::after {
+    width: 30%;
+}
+
+body.mobile-view .view-all {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+/* Swiper Carousel (Mobile) */
+body.mobile-view .swiper-container {
+    padding: 10px 0;
+}
+
+body.mobile-view .swiper-slide {
+    text-align: center;
+}
+
+body.mobile-view .product-card {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.mobile-view .product-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+}
+
+body.mobile-view .product-card h3 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+body.mobile-view .product-card p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+body.mobile-view .rating {
+    font-size: 12px;
+}
+
+body.mobile-view .product-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    width: 100%;
+}
+
+body.mobile-view .product-actions button {
+    flex: 1;
+    padding: 8px;
+    font-size: 12px;
+    min-height: 44px;
+    min-width: 100px;
+}
+
+body.mobile-view .swiper-button-next,
+body.mobile-view .swiper-button-prev {
+    color: #007bff;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+}
+
+body.mobile-view .swiper-pagination {
+    bottom: 0;
+}
+
+body.mobile-view .swiper-pagination-bullet {
+    background: #007bff;
+    opacity: 0.5;
+}
+
+body.mobile-view .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Footer Styles (Mobile) */
+body.mobile-view footer {
+    padding: 15px;
+    padding-bottom: 60px; /* Space for bottom nav */
+    background-color: #fff; /* Match screenshot background */
+}
+
+body.mobile-view .footer-links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+body.mobile-view .footer-links a {
+    font-size: 14px;
+    color: #007bff; /* Match screenshot link color */
+}
+
+body.mobile-view .newsletter h3 {
+    font-size: 16px;
+    color: #333; /* Match screenshot text color */
+}
+
+body.mobile-view .newsletter form {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+
+body.mobile-view .newsletter input {
+    width: 70%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+body.mobile-view .newsletter button {
+    width: 30%;
+    padding: 10px;
+    font-size: 14px;
+    min-height: 44px;
+}
+
+/* Bottom Navigation Bar (Mobile Only) */
+.bottom-nav {
+    display: none;
+}
+
+body.mobile-view .bottom-nav {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+body.mobile-view .bottom-nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.mobile-view .bottom-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+body.mobile-view .bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+    padding: 5px;
+}
+
+body.mobile-view .bottom-nav .icon {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+body.mobile-view .bottom-nav a.active {
+    color: #007bff;
+}
+
+/* Add padding to main and footer to prevent content from being hidden behind bottom-nav */
+body.mobile-view main {
+    padding: 10px;
+    padding-bottom: 70px; /* Increased to account for bottom-nav height */
+}
+
+body.mobile-view footer {
+    padding: 15px;
+    padding-bottom: 70px; /* Increased to account for bottom-nav height */
+    background-color: #fff;
+}
+
+/* Compare Section (Desktop) */
+.compare {
+    padding: 40px 20px;
+}
+
+.compare h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.compare h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.compare-table {
+    overflow-x: auto;
+}
+
+.compare-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.compare-table th, .compare-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.compare-table th {
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+
+.compare-table td {
+    font-size: 14px;
+}
+
+.compare-table img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.compare-table button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.compare-table button:hover {
+    background-color: #0056b3;
+}
+
+.compare-table .remove-from-compare {
+    background-color: #dc3545;
+}
+
+.compare-table .remove-from-compare:hover {
+    background-color: #c82333;
+}
+
+/* Compare Section (Mobile) */
+body.mobile-view .compare {
+    padding: 10px 0;
+}
+
+body.mobile-view .compare h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .compare-table th,
+body.mobile-view .compare-table td {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .compare-table img {
+    width: 80px;
+    height: 80px;
+}
+
+body.mobile-view .compare-table button {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+/* Wishlist Section (Desktop) */
+.wishlist {
+    padding: 40px 20px;
+}
+
+.wishlist h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.wishlist h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.wishlist-table {
+    overflow-x: auto;
+}
+
+.wishlist-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.wishlist-table th, .wishlist-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.wishlist-table th {
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+
+.wishlist-table td {
+    font-size: 14px;
+}
+
+.wishlist-table img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.wishlist-table button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.wishlist-table button:hover {
+    background-color: #0056b3;
+}
+
+.wishlist-table .remove-from-wishlist {
+    background-color: #dc3545;
+}
+
+.wishlist-table .remove-from-wishlist:hover {
+    background-color: #c82333;
+}
+
+/* Wishlist Section (Mobile) */
+body.mobile-view .wishlist {
+    padding: 10px 0;
+}
+
+body.mobile-view .wishlist h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .wishlist-table th,
+body.mobile-view .wishlist-table td {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .wishlist-table img {
+    width: 80px;
+    height: 80px;
+}
+
+body.mobile-view .wishlist-table button {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+/* Categories Section (Desktop) */
+.categories {
+    padding: 40px 20px;
+}
+
+.categories h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.categories h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(33.33% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.category-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.category-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.category-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.category-card a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.category-card a:hover {
+    background-color: #0056b3;
+}
+
+/* Categories Section (Mobile) */
+body.mobile-view .categories {
+    padding: 10px 0;
+}
+
+body.mobile-view .category-card {
+    width: 100%;
+    padding: 10px;
+}
+
+body.mobile-view .category-card img {
+    height: 120px;
+}
+
+body.mobile-view .category-card h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .category-card p {
+    font-size: 12px;
+}
+
+body.mobile-view .category-card a {
+    padding: 8px;
+    font-size: 12px;
+    min-height: 44px;
+}
+/* Cart Section (Desktop) */
+.cart {
+    padding: 40px 20px;
+}
+
+.cart h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.cart h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.cart-table {
+    overflow-x: auto;
+}
+
+.cart-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cart-table th {
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+
+.cart-table td {
+    font-size: 14px;
+}
+
+.cart-table img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.cart-table button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-table button:hover {
+    background-color: #0056b3;
+}
+
+.cart-table .remove-from-cart {
+    background-color: #dc3545;
+}
+
+.cart-table .remove-from-cart:hover {
+    background-color: #c82333;
+}
+
+.cart-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.cart-actions button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-actions button:hover {
+    background-color: #218838;
+}
+
+/* Cart Section (Mobile) */
+body.mobile-view .cart {
+    padding: 10px 0;
+}
+
+body.mobile-view .cart h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .cart-table th,
+body.mobile-view .cart-table td {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .cart-table img {
+    width: 80px;
+    height: 80px;
+}
+
+body.mobile-view .cart-table button {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .cart-actions {
+    text-align: center;
+}
+
+body.mobile-view .cart-actions button {
+    padding: 8px 16px;
+    font-size: 14px;
+    min-height: 44px;
+}
+/* Sellers Section (Desktop) */
+.sellers {
+    padding: 40px 20px;
+}
+
+.sellers h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.sellers h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.seller-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.seller-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(33.33% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.seller-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.seller-info {
+    flex: 1;
+}
+
+.seller-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.seller-info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.seller-info .view-products-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.seller-info .view-products-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Sellers Section (Mobile) */
+body.mobile-view .sellers {
+    padding: 10px 0;
+}
+
+body.mobile-view .seller-card {
+    width: 100%;
+    padding: 10px;
+    flex-direction: column;
+    text-align: center;
+}
+
+body.mobile-view .seller-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+}
+
+body.mobile-view .seller-info h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .seller-info p {
+    font-size: 12px;
+}
+
+body.mobile-view .seller-info .view-products-btn {
+    padding: 8px;
+    font-size: 12px;
+    min-height: 44px;
+}
+/* Services Section (Desktop) */
+.services {
+    padding: 40px 20px;
+}
+
+.services h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.services h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.service-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(50% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.service-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Services Section (Mobile) */
+body.mobile-view .services {
+    padding: 10px 0;
+}
+
+body.mobile-view .service-item {
+    width: 100%;
+    padding: 10px;
+}
+
+body.mobile-view .service-item h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .service-item p {
+    font-size: 12px;
+}
+/* Modal (Pop-Up) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other content */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: block; /* Show the modal when active */
+    opacity: 1;
+}
+
+.modal-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 400px; /* Maximum width for larger screens */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transform: translateX(-50%) scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateX(-50%) scale(1);
+}
+
+/* Position the modal-content vertically based on the section header */
+.modal-content.positioned {
+    top: 150px; /* Default top position, will be adjusted dynamically via JavaScript */
+}
+
+/* Modal Content Styles */
+.modal-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-close:hover {
+    color: #000;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-content input[type="email"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.modal-decline {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+}
+
+.modal-decline:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Modal (Mobile) */
+body.mobile-view .modal-content {
+    width: 85%;
+    padding: 15px;
+}
+
+body.mobile-view .modal-content.positioned {
+    top: 100px; /* Adjust for mobile view */
+}
+
+body.mobile-view .modal-content h3 {
+    font-size: 18px;
+}
+
+body.mobile-view .modal-content p {
+    font-size: 14px;
+}
+
+body.mobile-view .modal-content input[type="email"] {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .modal-content button {
+    padding: 8px;
+    font-size: 14px;
+    min-height: 44px;
+}
+
+body.mobile-view .modal-close {
+    font-size: 20px;
+}
+/* About Us Section (Desktop) */
+.about-us {
+    padding: 40px 20px;
+}
+
+.about-us h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.about-us h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.about-content p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* About Us Section (Mobile) */
+body.mobile-view .about-us {
+    padding: 10px 0;
+}
+
+body.mobile-view .about-us h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .about-content {
+    padding: 15px;
+}
+
+body.mobile-view .about-content h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .about-content p {
+    font-size: 14px;
+}
+/* Contact Us Section (Desktop) */
+.contact-us {
+    padding: 40px 20px;
+}
+
+.contact-us h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.contact-us h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 40px;
+}
+
+.contact-form {
+    flex: 1;
+}
+
+.contact-form h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.contact-form p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info i {
+    color: #007bff;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Us Section (Mobile) */
+body.mobile-view .contact-us {
+    padding: 10px 0;
+}
+
+body.mobile-view .contact-us h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .contact-content {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+}
+
+body.mobile-view .contact-form h3,
+body.mobile-view .contact-info h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .contact-form p,
+body.mobile-view .contact-info p {
+    font-size: 14px;
+}
+
+body.mobile-view .form-group label {
+    font-size: 12px;
+}
+
+body.mobile-view .form-group input,
+body.mobile-view .form-group textarea {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .contact-form button {
+    padding: 8px;
+    font-size: 14px;
+    min-height: 44px;
+}
+/* Terms of Service Section (Desktop) */
+.terms {
+    padding: 40px 20px;
+}
+
+.terms h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.terms h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.terms-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.terms-content h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.terms-content p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.terms-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms-content a:hover {
+    text-decoration: underline;
+}
+
+/* Terms of Service Section (Mobile) */
+body.mobile-view .terms {
+    padding: 10px 0;
+}
+
+body.mobile-view .terms h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .terms-content {
+    padding: 15px;
+}
+
+body.mobile-view .terms-content h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .terms-content p {
+    font-size: 14px;
+}
+/* Privacy Policy Section (Desktop) */
+.privacy {
+    padding: 40px 20px;
+}
+
+.privacy h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.privacy h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-content h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.privacy-content p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.privacy-content ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.privacy-content li {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 5px;
+}
+
+.privacy-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.privacy-content a:hover {
+    text-decoration: underline;
+}
+
+/* Privacy Policy Section (Mobile) */
+body.mobile-view .privacy {
+    padding: 10px 0;
+}
+
+body.mobile-view .privacy h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .privacy-content {
+    padding: 15px;
+}
+
+body.mobile-view .privacy-content h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .privacy-content p,
+body.mobile-view .privacy-content li {
+    font-size: 14px;
+}
+/* Cart Section (Desktop) */
+#cart-table {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#cart-table p {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#cart-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#cart-table th,
+#cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart-table th {
+    background-color: #f5f5f5;
+    font-size: 16px;
+    color: #333;
+}
+
+#cart-table td {
+    font-size: 14px;
+    color: #666;
+}
+
+#cart-table img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+#cart-table .remove-from-cart {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#cart-table .remove-from-cart:hover {
+    background-color: #c82333;
+}
+
+.cart-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.continue-shopping,
+.proceed-to-checkout {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.continue-shopping {
+    background-color: #6c757d;
+    color: white;
+}
+
+.continue-shopping:hover {
+    background-color: #5a6268;
+}
+
+.proceed-to-checkout {
+    background-color: #007bff;
+    color: white;
+}
+
+.proceed-to-checkout:hover {
+    background-color: #0056b3;
+}
+
+/* Cart Section (Mobile) */
+body.mobile-view #cart-table {
+    padding: 10px;
+}
+
+body.mobile-view #cart-table p {
+    font-size: 14px;
+}
+
+body.mobile-view #cart-table th,
+body.mobile-view #cart-table td {
+    padding: 10px;
+}
+
+body.mobile-view #cart-table th {
+    font-size: 14px;
+}
+
+body.mobile-view #cart-table td {
+    font-size: 12px;
+}
+
+body.mobile-view #cart-table img {
+    width: 40px;
+    height: 40px;
+}
+
+body.mobile-view #cart-table .remove-from-cart {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+body.mobile-view .cart-actions {
+    flex-direction: column;
+    gap: 10px;
+}
+
+body.mobile-view .continue-shopping,
+body.mobile-view .proceed-to-checkout {
+    padding: 8px 16px;
+    font-size: 14px;
+    text-align: center;
+}
+/* Cart Quantity Input (Desktop) */
+.cart-quantity {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Cart Summary (Desktop) */
+.cart-summary {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Cart Section (Mobile) */
+body.mobile-view .cart-quantity {
+    width: 50px;
+    padding: 3px;
+    font-size: 12px;
+}
+
+body.mobile-view .cart-summary {
+    font-size: 16px;
+}
+/* Checkout Section (Desktop) */
+.checkout {
+    padding: 40px 20px;
+}
+
+.checkout h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.checkout h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.checkout-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+}
+
+.checkout-form {
+    flex: 2;
+}
+
+.checkout-form h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.checkout-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.checkout-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-form button:hover {
+    background-color: #0056b3;
+}
+
+.cart-summary {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-summary h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.cart-summary table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-summary th,
+.cart-summary td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-summary th {
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #333;
+}
+
+.cart-summary td {
+    font-size: 14px;
+    color: #666;
+}
+
+.cart-summary p {
+    text-align: right;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Checkout Section (Mobile) */
+body.mobile-view .checkout {
+    padding: 10px 0;
+}
+
+body.mobile-view .checkout h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .checkout-content {
+    flex-direction: column;
+    gap: 20px;
+}
+
+body.mobile-view .checkout-form h3,
+body.mobile-view .cart-summary h3 {
+    font-size: 16px;
+}
+
+body.mobile-view .form-group label {
+    font-size: 12px;
+}
+
+body.mobile-view .form-group input,
+body.mobile-view .form-group textarea,
+body.mobile-view .form-group select {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .checkout-form button {
+    padding: 8px;
+    font-size: 14px;
+    min-height: 44px;
+}
+
+body.mobile-view .cart-summary {
+    padding: 15px;
+}
+
+body.mobile-view .cart-summary th,
+body.mobile-view .cart-summary td {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .cart-summary p {
+    font-size: 14px;
+}
+/* Add to Wishlist Button (Desktop) */
+.add-to-wishlist {
+    padding: 8px 16px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-wishlist:hover {
+    background-color: #e60000;
+}
+
+.add-to-wishlist:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Wishlist Section (Desktop) */
+.wishlist {
+    padding: 40px 20px;
+}
+
+.wishlist h2 {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.wishlist h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.wishlist table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.wishlist th,
+.wishlist td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.wishlist th {
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #333;
+}
+
+.wishlist td {
+    font-size: 14px;
+    color: #666;
+}
+
+.wishlist-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.add-to-cart-from-wishlist {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-from-wishlist:hover {
+    background-color: #0056b3;
+}
+
+.remove-from-wishlist {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.remove-from-wishlist:hover {
+    background-color: #c82333;
+}
+
+/* Add to Wishlist Button (Mobile) */
+body.mobile-view .add-to-wishlist {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Wishlist Section (Mobile) */
+body.mobile-view .wishlist {
+    padding: 10px 0;
+}
+
+body.mobile-view .wishlist h2 {
+    font-size: 18px;
+}
+
+body.mobile-view .wishlist th,
+body.mobile-view .wishlist td {
+    padding: 8px;
+    font-size: 12px;
+}
+
+body.mobile-view .add-to-cart-from-wishlist,
+body.mobile-view .remove-from-wishlist {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+/* Prevent horizontal scrolling on the body */
+body {
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure all containers respect the viewport width */
+header, main, footer, .bottom-nav, .modal {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Navigation (Desktop) */
+nav {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* Hamburger Menu (Desktop) */
+.hamburger {
+    display: none;
+}
+
+/* Hamburger Menu (Mobile) */
+body.mobile-view .hamburger {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it’s above other elements */
+}
+
+/* Navigation (Mobile) */
+body.mobile-view nav {
+    display: none; /* Hidden by default */
+    position: fixed; /* Use fixed to ensure it doesn’t affect page width */
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Ensure it’s above other content */
+    overflow-y: auto; /* Allow vertical scrolling if menu is long */
+    max-height: calc(100vh - 60px); /* Prevent it from exceeding viewport height */
+}
+
+body.mobile-view nav.active {
+    display: block; /* Show when active */
+}
+
+body.mobile-view nav ul {
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+}
+
+body.mobile-view nav ul li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+body.mobile-view nav ul li a {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+}
+
+body.mobile-view nav ul li a:hover {
+    color: #007bff;
+}
