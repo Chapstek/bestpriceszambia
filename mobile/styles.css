@@ -2234,3 +2234,80 @@ body.mobile-view .remove-from-wishlist {
     padding: 6px 12px;
     font-size: 12px;
 }
+/* Prevent horizontal scrolling on the body */
+body {
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure all containers respect the viewport width */
+header, nav, main, footer, .bottom-nav, .modal {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Product Grid (Desktop) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Product Card (Desktop) */
+.product-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Product Grid (Mobile) */
+body.mobile-view .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 0 10px;
+}
+
+/* Product Card (Mobile) */
+body.mobile-view .product-card {
+    padding: 10px;
+}
+
+/* Ensure buttons inside product cards don't cause overflow */
+.product-card button {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+/* Fix for Compare buttons (if they are causing overflow) */
+.compare-btn {
+    display: none; /* Temporarily hide to test if they are causing the issue */
+}
+
+/* Ensure user actions in header don't overflow */
+.user-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* User actions (Mobile) */
+body.mobile-view .user-actions {
+    flex-direction: column;
+    align-items: flex-end;
+}

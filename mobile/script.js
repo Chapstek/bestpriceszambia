@@ -120,6 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (wishlistCount) wishlistCount.textContent = `Wishlist (${wishlist.length})`;
         if (cartCount) cartCount.textContent = `Cart (${cart.length})`;
     };
+	
+	const productGrid = document.getElementById('product-grid');
+if (productGrid) {
+    let productHTML = '';
+    products.forEach(product => {
+        productHTML += `
+            <div class="product-card">
+                <img src="${product.image}" alt="${product.name}" style="width: 100%; height: auto;">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p class="price">ZMW ${product.price.toFixed(2)}</p>
+                <p class="rating">${product.rating}</p>
+                <button class="add-to-cart" data-product-id="${product.id}" aria-label="Add ${product.name} to cart">Add to Cart</button>
+                <button class="add-to-wishlist" data-product-id="${product.id}" aria-label="Add ${product.name} to wishlist"><i class="fas fa-heart"></i> Add to Wishlist</button>
+            </div>
+        `;
+    });
+    productGrid.innerHTML = productHTML;
+}
 
     updateCounts();
 });
