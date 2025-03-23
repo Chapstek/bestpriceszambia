@@ -29,8 +29,24 @@ const swiper = new Swiper('.swiper-container', {
     }
 });
 
-// Load Featured Products
+// Update Counts (for cart, wishlist, compare)
+function updateCounts() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const compare = JSON.parse(localStorage.getItem('compare')) || [];
+
+    const cartCount = document.getElementById('cart-count');
+    const wishlistCount = document.getElementById('wishlist-count');
+    const compareCount = document.getElementById('compare-count');
+
+    if (cartCount) cartCount.textContent = `Cart (${cart.length})`;
+    if (wishlistCount) wishlistCount.textContent = `Wishlist (${wishlist.length})`;
+    if (compareCount) compareCount.textContent = `Compare (${compare.length})`;
+}
+
+// Load Featured Products and Handle Interactions
 document.addEventListener('DOMContentLoaded', () => {
+    // Load Featured Products
     const productList = document.getElementById('product-list');
     if (productList) {
         productList.innerHTML = '';
@@ -42,16 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
             slide.setAttribute('data-product-id', product.id);
             slide.innerHTML = `
                 <div class="product-card">
-                    <a href="product.html?id=${product.id}">
+                    <a href="product.html?id=${product.id}" aria-label="View details for ${product.name}">
                         <img src="${product.image}" alt="${product.name}">
                         <h3>${product.code}</h3>
                         <p>${product.name}</p>
                         <div class="rating">${product.rating}</div>
                     </a>
                     <div class="product-actions">
-                        <button class="add-to-cart" data-product-id="${product.id}">Add to Cart</button>
-                        <button class="add-to-wishlist" data-product-id="${product.id}">Add to Wishlist</button>
-                        <button class="add-to-compare" data-product-id="${product.id}">Compare</button>
+                        <button class="add-to-cart" data-product-id="${product.id}" aria-label="Add ${product.name} to cart">Add to Cart</button>
+                        <button class="add-to-wishlist" data-product-id="${product.id}" aria-label="Add ${product.name} to wishlist">Add to Wishlist</button>
+                        <button class="add-to-compare" data-product-id="${product.id}" aria-label="Add ${product.name} to compare">Compare</button>
                     </div>
                 </div>
             `;
@@ -66,9 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.getElementById('search-btn');
     if (searchBtn) {
         searchBtn.addEventListener('click', () => {
-            const searchTerm = document.getElementById('search-input').value;
+            const searchTerm = document.getElementById('search-input').value.trim();
             if (searchTerm) {
                 window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            } else {
+                alert('Please enter a search term.');
             }
         });
     }
@@ -125,36 +143,62 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCounts();
 
     // Highlight Current Page in Top Navigation
-    const topNavLinks = document.querySelectorAll('nav a');
+    const topNavLinks = document.querySelectorAll('.top-nav a');
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     if (topNavLinks) {
         topNavLinks.forEach(link => {
             link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === currentPath) {
+                link.classList.add('active');
+            }
         });
-        const navHome = document.getElementById('nav-home');
-        if (navHome) navHome.classList.add('active');
     }
 
     // Highlight Current Page in Bottom Navigation
-    const bottomNavLinks = document.querySelectorAll('.bottom-nav-item');
+    const bottomNavLinks = document.querySelectorAll('.bottom-nav a');
     if (bottomNavLinks) {
         bottomNavLinks.forEach(link => {
             link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === currentPath) {
+                link.classList.add('active');
+            }
         });
-        const bottomNavHome = document.getElementById('bottom-nav-home');
-        if (bottomNavHome) bottomNavHome.classList.add('active');
     }
 
     // Breadcrumb Navigation
     function updateBreadcrumb() {
         const breadcrumb = document.getElementById('breadcrumb');
         if (breadcrumb) {
-            const currentPage = window.location.pathname.split('/').pop();
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            let pageTitle = 'Home';
 
-            let navHistory = JSON.parse(sessionStorage.getItem('navHistory')) || [];
-            if (navHistory.length === 0 || navHistory[navHistory.length - 1].url !== currentPage) {
-                navHistory = [{ url: 'index.html', title: 'Home' }];
+            // Map page URLs to titles
+            const pageTitles = {
+                'index.html': 'Home',
+                'sellers.html': 'Sellers',
+                'brands.html': 'All Brands',
+                'categories.html': 'All Categories',
+                'products.html': 'Products',
+                'services.html': 'Services',
+                'notifications.html': 'Notifications',
+                'compare.html': 'Compare',
+                'wishlist.html': 'Wishlist'
+            };
+
+            if (pageTitles[currentPage]) {
+                pageTitle = pageTitles[currentPage];
             }
 
+            let navHistory = JSON.parse(sessionStorage.getItem('navHistory')) || [];
+            
+            // Only add the current page if it's not already the last in the history
+            if (navHistory.length === 0 || navHistory[navHistory.length - 1].url !== currentPage) {
+                navHistory.push({ url: currentPage, title: pageTitle });
+            }
+
+            // Limit breadcrumb history to 5 items
             if (navHistory.length > 5) {
                 navHistory = navHistory.slice(-5);
             }
@@ -164,9 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let breadcrumbHTML = '';
             navHistory.forEach((item, index) => {
                 if (index < navHistory.length - 1) {
-                    breadcrumbHTML += `<a href="${item.url}">${item.title}</a><span class="separator">></span>`;
+                    breadcrumbHTML += `<a href="${item.url}" aria-label="Go to ${item.title}">${item.title}</a><span class="separator">></span>`;
                 } else {
-                    breadcrumbHTML += `<span>${item.title}</span>`;
+                    breadcrumbHTML += `<span aria-current="page">${item.title}</span>`;
                 }
             });
 
