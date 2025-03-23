@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - E-Commerce</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="sellers.html">Sellers</a>
+        <a href="brands.html">All Brands</a>
+        <a href="categories.html">All Categories</a>
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="notifications.html">Notifications</a>
+        <a href="compare.html" id="compare-count">Compare (0)</a>
+        <a href="wishlist.html" id="wishlist-count">Wishlist (0)</a>
+        <a href="cart.html" id="cart-count">Cart (0)</a>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div id="breadcrumb" class="breadcrumb"></div>
+
+    <!-- Product Detail Section -->
+    <section id="product-detail" class="product-detail"></section>
+
+    <!-- Related Products Section -->
+    <section id="related-products" class="related-products">
+        <h2>Related Products</h2>
+        <div class="swiper-container related-swiper">
+            <div class="swiper-wrapper" id="related-product-list"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="product.js"></script>
+</body>
+</html>
