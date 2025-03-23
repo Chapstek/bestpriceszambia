@@ -663,6 +663,18 @@ body.mobile-view .bottom-nav a.active {
     color: #007bff;
 }
 
+/* Add padding to main and footer to prevent content from being hidden behind bottom-nav */
+body.mobile-view main {
+    padding: 10px;
+    padding-bottom: 70px; /* Increased to account for bottom-nav height */
+}
+
+body.mobile-view footer {
+    padding: 15px;
+    padding-bottom: 70px; /* Increased to account for bottom-nav height */
+    background-color: #fff;
+}
+
 /* Compare Section (Desktop) */
 .compare {
     padding: 40px 20px;
