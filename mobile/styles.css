@@ -366,51 +366,95 @@ body.mobile-view .action-icon {
     width: 100%;
 }
 
-/* Hamburger Menu for Mobile */
+/* Navigation (Desktop) */
+nav {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+nav a:hover,
+nav a.active {
+    color: #007bff;
+}
+
+/* Hamburger Menu (Desktop) */
+.hamburger {
+    display: none;
+}
+
+/* Hamburger Menu (Mobile) */
 body.mobile-view .hamburger {
     display: block;
     position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
+    font-size: 24px;
     cursor: pointer;
+    z-index: 1000; /* Ensure it’s above other elements */
 }
 
+/* Navigation (Mobile) */
 body.mobile-view nav {
-    display: none;
+    display: none !important; /* Hidden by default */
+    position: fixed; /* Use fixed to ensure it doesn’t affect page width */
+    top: 60px;
+    left: 0;
     width: 100%;
     background-color: #fff;
-    padding: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Ensure it’s above other content */
+    overflow-y: auto; /* Allow vertical scrolling if menu is long */
+    max-height: calc(100vh - 60px); /* Prevent it from exceeding viewport height */
+    padding: 0;
 }
 
 body.mobile-view nav.active {
-    display: block;
+    display: block !important; /* Show when active, with higher specificity */
 }
 
 body.mobile-view nav ul {
     flex-direction: column;
-    gap: 0;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
 }
 
-body.mobile-view nav li {
+body.mobile-view nav ul li {
+    margin: 10px 0;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-body.mobile-view nav a {
+body.mobile-view nav ul li a {
     display: block;
     padding: 15px;
     font-size: 16px;
     color: #333;
+    text-decoration: none;
 }
 
-body.mobile-view nav a:hover,
-body.mobile-view nav a.active {
+body.mobile-view nav ul li a:hover,
+body.mobile-view nav ul li a.active {
     background-color: #f8f9fa;
     color: #007bff;
 }

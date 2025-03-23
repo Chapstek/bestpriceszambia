@@ -1,3 +1,38 @@
+// Detect Mobile View
+function applyMobileView() {
+    const isMobile = window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent);
+    console.log('Applying mobile view:', isMobile);
+    document.body.classList.toggle('mobile-view', isMobile);
+}
+
+// Apply immediately and on resize
+applyMobileView();
+window.addEventListener('load', applyMobileView);
+window.addEventListener('resize', applyMobileView);
+
+// Hamburger Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded fired');
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    if (!hamburger || !nav) {
+        console.error('Hamburger menu elements not found:', { hamburger, nav });
+        return;
+    }
+
+    console.log('Hamburger menu elements found:', { hamburger, nav });
+
+    hamburger.addEventListener('click', () => {
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+        nav.classList.toggle('active');
+        hamburger.textContent = isExpanded ? '☰' : '✕';
+        console.log('Hamburger menu toggled:', { isExpanded: !isExpanded, navClassList: nav.classList.toString() });
+    });
+});
+
+// Rest of script.js (e.g., product grid population, etc.)
 // Show Free Guide Pop-Up
 window.showFreeGuidePopup = function() {
     const modal = document.getElementById('free-guide-modal');
