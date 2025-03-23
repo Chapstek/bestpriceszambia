@@ -1,0 +1,30 @@
+<!-- index.html (root) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Flooring Trader</title>
+</head>
+<body>
+    <script>
+        // Detect if the user is on a mobile device
+        function isMobileDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
+        }
+
+        // Redirect based on device type
+        if (isMobileDevice()) {
+            window.location.href = 'mobile/index.html';
+        } else {
+            window.location.href = 'desktop/index.html';
+        }
+    </script>
+    <noscript>
+        <p>Please enable JavaScript to access this website.</p>
+        <p>If you're on a desktop, <a href="desktop/index.html">click here</a>.</p>
+        <p>If you're on a mobile device, <a href="mobile/index.html">click here</a>.</p>
+    </noscript>
+</body>
+</html>
