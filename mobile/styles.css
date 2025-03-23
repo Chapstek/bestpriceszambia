@@ -2242,72 +2242,75 @@ body {
 }
 
 /* Ensure all containers respect the viewport width */
-header, nav, main, footer, .bottom-nav, .modal {
+header, main, footer, .bottom-nav, .modal {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
 }
 
-/* Product Grid (Desktop) */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-/* Product Card (Desktop) */
-.product-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Product Grid (Mobile) */
-body.mobile-view .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-    padding: 0 10px;
-}
-
-/* Product Card (Mobile) */
-body.mobile-view .product-card {
-    padding: 10px;
-}
-
-/* Ensure buttons inside product cards don't cause overflow */
-.product-card button {
+/* Navigation (Desktop) */
+nav {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    margin-top: 10px;
+    display: block;
 }
 
-/* Fix for Compare buttons (if they are causing overflow) */
-.compare-btn {
-    display: none; /* Temporarily hide to test if they are causing the issue */
+/* Hamburger Menu (Desktop) */
+.hamburger {
+    display: none;
 }
 
-/* Ensure user actions in header don't overflow */
-.user-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-end;
+/* Hamburger Menu (Mobile) */
+body.mobile-view .hamburger {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it’s above other elements */
+}
+
+/* Navigation (Mobile) */
+body.mobile-view nav {
+    display: none; /* Hidden by default */
+    position: fixed; /* Use fixed to ensure it doesn’t affect page width */
+    top: 60px;
+    left: 0;
     width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Ensure it’s above other content */
+    overflow-y: auto; /* Allow vertical scrolling if menu is long */
+    max-height: calc(100vh - 60px); /* Prevent it from exceeding viewport height */
 }
 
-/* User actions (Mobile) */
-body.mobile-view .user-actions {
+body.mobile-view nav.active {
+    display: block; /* Show when active */
+}
+
+body.mobile-view nav ul {
     flex-direction: column;
-    align-items: flex-end;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+}
+
+body.mobile-view nav ul li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+body.mobile-view nav ul li a {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+}
+
+body.mobile-view nav ul li a:hover {
+    color: #007bff;
 }
