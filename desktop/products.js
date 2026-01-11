@@ -11,17 +11,17 @@ const products = [
 const brands = [
     { id: 1, name: "Apple" },
     { id: 2, name: "CAT" },
-    { id: 3, name: "G-Shock" },
-    { id: 4, name: "Louis Vuitton" }
+    { id: 3, name: "G-Shock" }
+   // { id: 4, name: "Louis Vuitton" }
 ];
 
 // Category Data (Simulated Database)
 const categories = [
-    { id: 1, name: "Laminate Flooring" },
-    { id: 2, name: "Vinyl Flooring" },
-    { id: 3, name: "Skirting Boards" },
-    { id: 4, name: "Transition Laminates" },
-    { id: 5, name: "Stair-Nosing" }
+    { id: 1, name: "Phones" },
+    { id: 2, name: "Watches" }
+  //  { id: 3, name: "Skirting Boards" },
+  //  { id: 4, name: "Transition Laminates" },
+  //  { id: 5, name: "Stair-Nosing" }
 ];
 
 // Initialize Swiper
@@ -229,3 +229,4 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
