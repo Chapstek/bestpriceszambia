@@ -1,7 +1,7 @@
 // Product Data (Simulated Database)
 const products = [
     { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Latest iPhone with 256GB storage, perfect for professionals.", image: "iphones.png", rating: "★★★★★", brandId: 5, categoryId: 6 },
-    { id: 2, code: "ZMW4332.75", name: "G-Shock GA-2100-1A1", description: "Shock resistant, 200m water resistance, World time, Stopwatch & countdown timer, LED light", image: "GSHOCK.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
+    { id: 2, code: "ZMW4331.45", name: "G-Shock GA-2100-1A1", description: "Shock resistant, 200m water resistance, World time, Stopwatch & countdown timer, LED light", image: "GSHOCK.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
     { id: 3, code: "ZMW456.41", name: "Skirting and quarter rounds (Sold Separately)", description: "Matching skirting boards for 8mm laminates, sold separately.", image: "skirtings.jpg", rating: "★★★★★", brandId: 4, categoryId: 3 },
     { id: 4, code: "ZMW394.85", name: "MDF Luxwrap Transition Laminates", description: "Transition laminates for seamless flooring transitions.", image: "mdf.jpg", rating: "★★★★★", brandId: 3, categoryId: 4 },
     { id: 5, code: "ZMW472.61", name: "MDF Luxwrap Stair-Nosing", description: "Stair-nosing for safe and stylish stair edges.", image: "mdf_lux.jpg", rating: "★★★★★", brandId: 3, categoryId: 5 }
@@ -201,4 +201,5 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
 
