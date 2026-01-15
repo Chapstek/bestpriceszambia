@@ -1,10 +1,11 @@
 // Product Data (Simulated Database)
 const products = [
     { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Platform OS iOS 17, upgradable to iOS 18.3.2 48 MP Front, 12 MP Back.", image: "iphones.png", rating: "★★★★★", brandId: 1, categoryId: 1 },
-    { id: 2, code: "ZMW6336.38", name: "CAT S62 Smartphone", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
-    { id: 3, code: "ZMW4331.45", name: "G-Shock", description: "Smartwatches.", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
-    { id: 4, code: "ZMW3176.40", name: "G-Shock", description: "Power Trainer Water-Resistant Digital Sport Watch - GBD-800UC-5", image: "GSHOCK1.png", rating: "★★★★★", brandId: 3, categoryId: 4 },
-    { id: 5, code: "ZMW4331.45", name: "G-Shock", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 5 }
+    { id: 2, code: "ZMW4331.45", name: "G-Shock GA-2100-1A1", description: "Shock resistant, 200m water resistance, World time, Stopwatch & countdown timer, LED light", image: "GSHOCK.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
+    { id: 3, code: "ZMW6336.38", name: "CAT S62 Smartphone", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
+//    { id: 3, code: "ZMW4331.45", name: "G-Shock", description: "Smartwatches.", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
+//    { id: 4, code: "ZMW3176.40", name: "G-Shock", description: "Power Trainer Water-Resistant Digital Sport Watch - GBD-800UC-5", image: "GSHOCK1.png", rating: "★★★★★", brandId: 3, categoryId: 4 },
+//    { id: 5, code: "ZMW4331.45", name: "G-Shock", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 5 }
 ];
 
 // Brand Data (Simulated Database)
@@ -229,4 +230,5 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
 
