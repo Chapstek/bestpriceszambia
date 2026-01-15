@@ -2,7 +2,7 @@
 const products = [
     { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Latest iPhone with 256GB storage, perfect for professionals.", image: "iphones.png", rating: "★★★★★", brandId: 5, categoryId: 6 },
     { id: 2, code: "ZMW4331.45", name: "G-Shock GA-2100-1A1", description: "Shock resistant, 200m water resistance, World time, Stopwatch & countdown timer, LED light", image: "GSHOCK.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
-    { id: 3, code: "ZMW6336.38", name: "CAT S-62", description: "Display: 5.7″ IPS LCD, Full HD+ (1080 × 2160) with Corning Gorilla Glass 6 protection — works with wet fingers & gloves.Qualcomm Snapdragon 660 octa-core (mid-range, reliable)RAM & Storage: 4 GB RAM + 128 GB storage (expandable with microSD).Operating System: Android 10, upgradable to Android 11." image: "CATS62.png", rating: "★★★★★", brandId: 4, categoryId: 3 },
+    { id: 3, code: "ZMW6336.38", name: "CAT S-62", description: "Display: 5.7″ IPS LCD, Full HD+ (1080 × 2160) with Corning Gorilla Glass 6 protection — works with wet fingers & gloves.Qualcomm Snapdragon 660 octa-core (mid-range, reliable)RAM & Storage: 4 GB RAM + 128 GB storage (expandable with microSD).Operating System: Android 10, upgradable to Android 11.", image: "CATS62.png", rating: "★★★★★", brandId: 4, categoryId: 3 },
     { id: 4, code: "ZMW394.85", name: "MDF Luxwrap Transition Laminates", description: "Transition laminates for seamless flooring transitions.", image: "mdf.jpg", rating: "★★★★★", brandId: 3, categoryId: 4 },
     { id: 5, code: "ZMW472.61", name: "MDF Luxwrap Stair-Nosing", description: "Stair-nosing for safe and stylish stair edges.", image: "mdf_lux.jpg", rating: "★★★★★", brandId: 3, categoryId: 5 }
 ];
@@ -201,6 +201,7 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
 
 
 
