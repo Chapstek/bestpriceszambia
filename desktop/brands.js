@@ -9,25 +9,25 @@ const brands = [
     },
     {
         id: 2,
-        name: "CAT",
-        description: "CAT Smartphones and everything else.",
-        logo: "CAT.png",
-        products: ["Hoodies, Boots, Belt Buckles, and Equipment Spareparts."]
+        name: "Casio",
+        description: "Casio wrist-watches and everything else.",
+        logo: "GSHOCK.png",
+        products: ["Wrist-watches"]
     },
     {
         id: 3,
-        name: "G-Shock",
-        description: "Smartwatches.",
-        logo: "GSHOCK.png",
-        products: ["Casio G-Shock Black Dial Sports Quartz 200M Men's Watch GA-2300-1A and many more."]
-    },
-    {
-        id: 4,
-        name: "Louis Vuitton",
-        description: "Handbags and wallets",
-        logo: "LV.png",
-        products: ["Louis Vuitton Zippy Wallet Vertical Monogram Eclipse M62295 Black With Box and many more."]
+        name: "CAT",
+        description: "CAT Smartphones and everything else.",
+        logo: "CATS62.png",
+        products: ["Smartphones"]
     }
+//    {
+//        id: 4,
+//        name: "Louis Vuitton",
+//        description: "Handbags and wallets",
+//        logo: "LV.png",
+//        products: ["Louis Vuitton Zippy Wallet Vertical Monogram Eclipse M62295 Black With Box and many more."]
+  //  }
 ];
 
 // Load Brands
@@ -125,3 +125,4 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
