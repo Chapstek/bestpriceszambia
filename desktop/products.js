@@ -11,8 +11,8 @@ const products = [
 // Brand Data (Simulated Database)
 const brands = [
     { id: 1, name: "Apple" },
-    { id: 2, name: "CAT" },
-    { id: 3, name: "G-Shock" }
+    { id: 2, name: "G-Shock" },
+    { id: 3, name: "CAT" }
    // { id: 4, name: "Louis Vuitton" }
 ];
 
@@ -230,5 +230,6 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
 
 
