@@ -1,11 +1,11 @@
 // Category Data (Simulated Database)
 const categories = [
-    { id: 1, name: "Laminate Flooring" },
-    { id: 2, name: "Vinyl Flooring" },
-    { id: 3, name: "Skirting Boards" },
-    { id: 4, name: "Transition Laminates" },
-    { id: 5, name: "Stair-Nosing" },
-    { id: 6, name: "Cell Phones & Smartphones" }
+    { id: 1, name: "Phones" },
+    { id: 2, name: "Watches" }
+//    { id: 3, name: "Skirting Boards" },
+//    { id: 4, name: "Transition Laminates" },
+//    { id: 5, name: "Stair-Nosing" },
+//    { id: 6, name: "Cell Phones & Smartphones" }
 ];
 
 // Load Categories
@@ -98,3 +98,4 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
