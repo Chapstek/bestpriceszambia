@@ -57,9 +57,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Checkout Button (Placeholder)
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-        alert('Checkout functionality coming soon!');
-    });
+    // Checkout Button (now requires login)
+document.getElementById('checkout-btn').addEventListener('click', () => {
+    if (isLoggedIn()) {
+        alert('Checkout functionality coming soon!\n(You are logged in as ' + getCurrentUserName() + ')');
+        // Future: window.location.href = "checkout.html";
+    } else {
+        // Send user to login with redirect back to cart
+        window.location.href = `login.html?redirect=${encodeURIComponent(window.location.href)}`;
+    }
+});
+
+// Helper functions (add at bottom of cart.js)
+function isLoggedIn() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    return user && user.loggedIn;
+}
+
+function getCurrentUserName() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    return user ? user.name || user.email : '';
+}
+
+// Optional: show username in header when logged in
+function updateUserDisplay() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user && user.loggedIn) {
+        // You can add a greeting or user icon in header
+        // Example:
+        // document.querySelector('.user-actions').innerHTML += `<span>Hello, ${user.name.split(' ')[0]}</span>`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... your existing code ...
+    updateUserDisplay();
+});
 
     // Update Counts
     updateCounts();
@@ -128,3 +161,4 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
+
