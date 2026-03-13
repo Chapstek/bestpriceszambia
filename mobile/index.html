@@ -11,37 +11,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
-
-    <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    try {
-      const swiper = new Swiper('.swiper', {
-        loop: true,               // optional but nice
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        slidesPerView: 1,
-        spaceBetween: 16,
-        // For debugging
-        on: {
-          init: function () {
-            console.log('Swiper initialized successfully!');
-          },
-        }
-      });
-
-      console.log('Swiper object created →', swiper);
-    } catch (err) {
-      console.error('Swiper init failed:', err);
-    }
-  });
-</script>
-    
 <body>
 
     <!-- Header -->
@@ -52,14 +21,12 @@
                     <img src="loyalbir.png" alt="Loyalbir logo" width="140" height="40">
                 </a>
             </div>
-
             <div class="search-bar">
                 <input type="search" id="search-input" placeholder="Search products…" aria-label="Search products">
                 <button type="button" class="search-btn" id="search-btn" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-
             <div class="user-actions">
                 <a href="compare.html" class="action-icon" id="compare-count" aria-label="Compare products">Compare (<span>0</span>)</a>
                 <a href="wishlist.html" class="action-icon" id="wishlist-count" aria-label="Wishlist">Wishlist (<span>0</span>)</a>
@@ -75,22 +42,18 @@
 
         <nav class="top-nav" id="main-nav" aria-label="Main navigation">
             <ul role="list">
-                <li><a href="index.html" class="active" id="nav-home">Home</a></li>
-                <li><a href="sellers.html" id="nav-sellers">Sellers</a></li>
-                <li><a href="brands.html" id="nav-brands">All Brands</a></li>
-                <li><a href="categories.html" id="nav-categories">All Categories</a></li>
-                <li><a href="products.html" id="nav-products">Products</a></li>
-                <li><a href="services.html" id="nav-services">Services</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="sellers.html">Sellers</a></li>
+                <li><a href="brands.html">All Brands</a></li>
+                <li><a href="categories.html">All Categories</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
             </ul>
         </nav>
-
         <div class="nav-overlay" aria-hidden="true"></div>
     </header>
 
-    <!-- Breadcrumb (to be populated by JS) -->
-    <nav class="breadcrumb" aria-label="Breadcrumb" aria-live="polite">
-        <!-- dynamically filled -->
-    </nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb" aria-live="polite"></nav>
 
     <main>
         <section class="products" aria-labelledby="new-products-heading">
@@ -101,66 +64,8 @@
 
             <div class="swiper">
                 <div class="swiper-wrapper" id="product-list">
-
-                    <!-- Product 1 -->
-                    <div class="swiper-slide" data-product-id="1">
-                        <div class="product-card">
-                            <a href="product.html?id=1" class="product-image-link" aria-label="View Apple iPhone 15 Pro Max 256GB">
-                                <img src="iphones.png" alt="Apple iPhone 15 Pro Max 256GB – Natural Titanium" loading="lazy" width="300" height="300">
-                            </a>
-                            <div class="product-info">
-                                <p class="product-name">Apple iPhone 15 Pro Max 256GB</p>
-                                <p class="price"><span class="currency">ZMW</span> <span class="amount">29,999</span><sup>.12</sup></p>
-                                <div class="rating" aria-label="5 out of 5 stars">★★★★★</div>
-                            </div>
-                            <div class="product-actions">
-                                <button type="button" class="add-to-cart"    data-product-id="1">Add to Cart</button>
-                                <button type="button" class="add-to-wishlist" data-product-id="1" aria-label="Add Apple iPhone 15 Pro Max to wishlist">♡</button>
-                                <button type="button" class="add-to-compare"  data-product-id="1" aria-label="Add to comparison">Compare</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="swiper-slide" data-product-id="2">
-                        <div class="product-card">
-                            <a href="product.html?id=2" class="product-image-link" aria-label="View G-Shock watch">
-                                <img src="GSHOCK.png" alt="Casio G-Shock rugged digital-analog watch – black" loading="lazy" width="300" height="300">
-                            </a>
-                            <div class="product-info">
-                                <p class="product-name">Casio G-Shock</p>
-                                <p class="price"><span class="currency">ZMW</span> <span class="amount">4,331</span><sup>.45</sup></p>
-                                <div class="rating" aria-label="5 out of 5 stars">★★★★★</div>
-                            </div>
-                            <div class="product-actions">
-                                <button type="button" class="add-to-cart"    data-product-id="2">Add to Cart</button>
-                                <button type="button" class="add-to-wishlist" data-product-id="2" aria-label="Add G-Shock to wishlist">♡</button>
-                                <button type="button" class="add-to-compare"  data-product-id="2" aria-label="Add to comparison">Compare</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 3 -->
-                    <div class="swiper-slide" data-product-id="3">
-                        <div class="product-card">
-                            <a href="product.html?id=3" class="product-image-link" aria-label="View CAT S62 smartphone">
-                                <img src="CATS62.png" alt="CAT S62 rugged smartphone with thermal camera" loading="lazy" width="300" height="300">
-                            </a>
-                            <div class="product-info">
-                                <p class="product-name">CAT S62 Smartphone</p>
-                                <p class="price"><span class="currency">ZMW</span> <span class="amount">6,336</span><sup>.38</sup></p>
-                                <div class="rating" aria-label="5 out of 5 stars">★★★★★</div>
-                            </div>
-                            <div class="product-actions">
-                                <button type="button" class="add-to-cart"    data-product-id="3">Add to Cart</button>
-                                <button type="button" class="add-to-wishlist" data-product-id="3" aria-label="Add CAT S62 to wishlist">♡</button>
-                                <button type="button" class="add-to-compare"  data-product-id="3" aria-label="Add to comparison">Compare</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- Products will stay here – logic below handles them -->
                 </div>
-
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev" aria-label="Previous product"></div>
                 <div class="swiper-button-next" aria-label="Next product"></div>
@@ -175,7 +80,6 @@
             <a href="terms.html">Terms of Service</a>
             <a href="privacy.html">Privacy Policy</a>
         </div>
-
         <div class="newsletter">
             <h2>Subscribe to Our Newsletter</h2>
             <form id="newsletter-form" aria-label="Newsletter subscription">
@@ -185,7 +89,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation -->
     <nav class="bottom-nav" aria-label="Main mobile navigation">
         <ul>
             <li><a href="index.html" class="active"><i class="fas fa-home"></i><span class="label">Home</span></a></li>
@@ -197,58 +100,205 @@
     </nav>
 
     <!-- Free Guide Modal -->
-    <div class="modal" id="free-guide-modal" role="dialog" aria-modal="true" aria-labelledby="free-guide-heading" aria-describedby="free-guide-desc" hidden>
+    <div class="modal" id="free-guide-modal" role="dialog" aria-modal="true" aria-labelledby="free-guide-heading" hidden>
         <div class="modal-content">
-            <button type="button" class="modal-close" id="free-guide-modal-close" aria-label="Close this dialog">×</button>
+            <button type="button" class="modal-close" id="free-guide-modal-close" aria-label="Close">×</button>
             <h2 id="free-guide-heading">Get Our Free Guide!</h2>
-            <p id="free-guide-desc">Download "Top 10 Technology Trends for 2025" instantly — no cost, no catch.</p>
-
-            <form id="free-guide-form" aria-label="Free guide download form">
-                <input type="email" id="free-guide-email" placeholder="Enter your email" required aria-required="true">
+            <p>Download "Top 10 Technology Trends for 2025" instantly — no cost.</p>
+            <form id="free-guide-form">
+                <input type="email" id="free-guide-email" placeholder="Enter your email" required>
                 <button type="submit">Download Now</button>
             </form>
-
             <button type="button" class="modal-decline" id="free-guide-modal-decline">No thanks</button>
         </div>
     </div>
 
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- JavaScript – all essential logic inline for demo   -->
+    <!-- Later move to external files                       -->
+    <!-- ──────────────────────────────────────────────── -->
+
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    try {
-      const swiper = new Swiper('.swiper', {
-        loop: true,               // optional but nice
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        slidesPerView: 1,
-        spaceBetween: 16,
-        // For debugging
-        on: {
-          init: function () {
-            console.log('Swiper initialized successfully!');
-          },
-        }
-      });
+    document.addEventListener('DOMContentLoaded', () => {
 
-      console.log('Swiper object created →', swiper);
-    } catch (err) {
-      console.error('Swiper init failed:', err);
-    }
-  });
-</script>
-    
-    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Order: data → logic → page-specific -->
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    <script src="index.js"></script>
+        // 1. Swiper init
+        let swiper;
+        try {
+            swiper = new Swiper('.swiper', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 16,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    640:  { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 3, spaceBetween: 24 },
+                }
+            });
+        } catch (err) {
+            console.error('Swiper failed:', err);
+        }
+
+        // 2. Simple product data (you can move to data.js later)
+        const products = [
+            { id: 1, name: "Apple iPhone 15 Pro Max 256GB", price: "ZMW 29,999.12", img: "iphones.png" },
+            { id: 2, name: "Casio G-Shock", price: "ZMW 4,331.45", img: "GSHOCK.png" },
+            { id: 3, name: "CAT S62 Smartphone", price: "ZMW 6,336.38", img: "CATS62.png" },
+        ];
+
+        // Render products
+        const productList = document.getElementById('product-list');
+        if (productList) {
+            products.forEach(p => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.dataset.productId = p.id;
+                slide.innerHTML = `
+                    <div class="product-card">
+                        <a href="product.html?id=${p.id}" aria-label="View ${p.name}">
+                            <img src="${p.img}" alt="${p.name}" loading="lazy" width="300" height="300">
+                        </a>
+                        <div class="product-info">
+                            <p class="product-name">${p.name}</p>
+                            <p class="price">${p.price}</p>
+                            <div class="rating" aria-label="5 stars">★★★★★</div>
+                        </div>
+                        <div class="product-actions">
+                            <button type="button" class="add-to-cart"    data-id="${p.id}">Add to Cart</button>
+                            <button type="button" class="add-to-wishlist" data-id="${p.id}">♡</button>
+                            <button type="button" class="add-to-compare"  data-id="${p.id}">Compare</button>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(slide);
+            });
+            if (swiper) swiper.update();
+        }
+
+        // 3. Update counters
+        function updateCounts() {
+            const cart     = JSON.parse(localStorage.getItem('cart')     || '[]');
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const compare  = JSON.parse(localStorage.getItem('compare')  || '[]');
+
+            document.getElementById('cart-count')    .innerHTML = `Cart (${cart.length})`;
+            document.getElementById('wishlist-count').innerHTML = `Wishlist (${wishlist.length})`;
+            document.getElementById('compare-count') .innerHTML = `Compare (${compare.length})`;
+        }
+
+        // 4. Delegated click handler for all action buttons
+        document.addEventListener('click', e => {
+            const btn = e.target.closest('.add-to-cart, .add-to-wishlist, .add-to-compare');
+            if (!btn) return;
+
+            const id = parseInt(btn.dataset.id);
+            if (!id) return;
+
+            let key, msg;
+
+            if (btn.classList.contains('add-to-cart')) {
+                key = 'cart';     msg = 'Added to cart!';
+            } else if (btn.classList.contains('add-to-wishlist')) {
+                key = 'wishlist'; msg = 'Added to wishlist!';
+            } else if (btn.classList.contains('add-to-compare')) {
+                key = 'compare';  msg = 'Added to compare!';
+            }
+
+            let list = JSON.parse(localStorage.getItem(key) || '[]');
+
+            if (list.includes(id)) {
+                alert('Already in list!');
+                return;
+            }
+
+            list.push(id);
+            localStorage.setItem(key, JSON.stringify(list));
+            updateCounts();
+
+            // Visual feedback
+            if (btn.classList.contains('add-to-wishlist')) {
+                btn.textContent = '❤️';
+                btn.style.color = 'red';
+            } else {
+                const orig = btn.textContent;
+                btn.textContent = '✓ Added';
+                btn.disabled = true;
+                setTimeout(() => {
+                    btn.textContent = orig;
+                    btn.disabled = false;
+                }, 1200);
+            }
+
+            alert(msg);
+        });
+
+        // 5. Search button
+        document.getElementById('search-btn')?.addEventListener('click', () => {
+            const term = document.getElementById('search-input')?.value?.trim();
+            if (term) {
+                window.location.href = `products.html?search=${encodeURIComponent(term)}`;
+            } else {
+                alert('Please enter a search term');
+            }
+        });
+
+        // 6. Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.getElementById('main-nav');
+        const overlay = document.querySelector('.nav-overlay');
+
+        hamburger?.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !expanded);
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        overlay?.addEventListener('click', () => {
+            hamburger.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+
+        // 7. Newsletter & Free guide – client-side simulation
+        document.getElementById('newsletter-form')?.addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Thank you! You are now subscribed.');
+            e.target.reset();
+        });
+
+        document.getElementById('free-guide-form')?.addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Guide download link sent to your email! (demo)');
+            document.getElementById('free-guide-modal').hidden = true;
+        });
+
+        document.getElementById('free-guide-modal-close')?.addEventListener('click', () => {
+            document.getElementById('free-guide-modal').hidden = true;
+        });
+
+        document.getElementById('free-guide-modal-decline')?.addEventListener('click', () => {
+            document.getElementById('free-guide-modal').hidden = true;
+        });
+
+        // Show modal after 8 seconds (demo)
+        setTimeout(() => {
+            document.getElementById('free-guide-modal').hidden = false;
+        }, 8000);
+
+        // Initial counts
+        updateCounts();
+    });
+    </script>
 </body>
 </html>
-
-
