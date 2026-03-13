@@ -239,6 +239,16 @@ main {
     padding: 20px 0;
 }
 
+/* Add space below the slides → dots move down automatically */
+.swiper {
+  padding-bottom: 40px;   /* ← adjust this value: try 30px, 45px, 60px etc. */
+}
+
+/* Optional: make sure dots are still centered and visible */
+.swiper-pagination {
+  bottom: 0 !important;   /* or remove this line if you want default positioning */
+}
+
 .swiper-slide {
     text-align: center;
 }
@@ -2369,4 +2379,5 @@ body.mobile-view nav ul li a {
 
 body.mobile-view nav ul li a:hover {
     color: #007bff;
+
 }
