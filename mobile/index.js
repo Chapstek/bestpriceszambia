@@ -1,13 +1,11 @@
 // data.js
 // Product Data (Simulated Database)
 const products = [
-    { id: 1, code: "ZMW29999", name: "Apple iPhone 15 Pro Max 256GB", description: "Platform OS iOS 17, upgradable to iOS 18.3.2 48 MP Front, 12 MP Back.", image: "iphones.png", rating: "★★★★★", brandId: 1, categoryId: 1 },
-    { id: 2, code: "ZMW450",   name: "Book", description: "Source Code : My Beginnings by Bill Gates 2025 Hardcover W/Dust-Jacket BRAND NEW", image: "source_code.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
-    { id: 3, code: "ZMW5486",  name: "Nike Sneakers", description: "Size 10.5 Nike SB Dunk Low Bart Simpson", image: "nike.png", rating: "★★★★★", brandId: 4, categoryId: 5 },
-    { id: 4, code: "ZMW6336",  name: "CAT S62 Smartphones", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
-    { id: 5, code: "ZMW17325", name: "Louis Vuitton Handbags", description: "Louis Vuitton Leather Handbag PM", image: "louisv.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
-    { id: 6, code: "ZMW3276",  name: "G-Shocks", description: "Power Trainer Water-Resistant Digital Sport Watch - GBD-800UC-5", image: "GSHOCK1.png", rating: "★★★★★", brandId: 3, categoryId: 4 },
-    { id: 7, code: "ZMW4450",  name: "G-Shocks", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 5 }
+    { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Latest iPhone with 256GB storage, perfect for professionals.", image: "iphones.png", rating: "★★★★★", brandId: 5, categoryId: 6 },
+    { id: 2, code: "ZMW4,068.71", name: "G-Shock", description: "Durable glue-down vinyl flooring, perfect for heavy traffic areas.", image: "Aurora.jpg", rating: "★★★★★", brandId: 2, categoryId: 2 },
+    { id: 3, code: "ZMW456.41", name: "Skirting and quarter rounds (Sold Separately)", description: "Matching skirting boards for 8mm laminates, sold separately.", image: "skirtings.jpg", rating: "★★★★★", brandId: 4, categoryId: 3 },
+    { id: 4, code: "ZMW394.85", name: "MDF Luxwrap Transition Laminates", description: "Transition laminates for seamless flooring transitions.", image: "mdf.jpg", rating: "★★★★★", brandId: 3, categoryId: 4 },
+    { id: 5, code: "ZMW472.61", name: "MDF Luxwrap Stair-Nosing", description: "Stair-nosing for safe and stylish stair edges.", image: "mdf_lux.jpg", rating: "★★★★★", brandId: 3, categoryId: 5 }
 ];
 
 // ────────────────────────────────────────────────
@@ -211,4 +209,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateBreadcrumb();
 });
+
 
