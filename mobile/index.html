@@ -212,6 +212,37 @@
         </div>
     </div>
 
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      const swiper = new Swiper('.swiper', {
+        loop: true,               // optional but nice
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        slidesPerView: 1,
+        spaceBetween: 16,
+        // For debugging
+        on: {
+          init: function () {
+            console.log('Swiper initialized successfully!');
+          },
+        }
+      });
+
+      console.log('Swiper object created →', swiper);
+    } catch (err) {
+      console.error('Swiper init failed:', err);
+    }
+  });
+</script>
+    
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <!-- Order: data → logic → page-specific -->
     <script src="data.js"></script>
@@ -219,4 +250,5 @@
     <script src="index.js"></script>
 </body>
 </html>
+
 
