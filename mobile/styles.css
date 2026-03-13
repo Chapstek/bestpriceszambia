@@ -23,17 +23,13 @@ body {
     width: 100%;
     max-width: none;
     position: relative;
+      margin-top: 16px;
   }
     .search-bar {
   margin-top: 12px;           /* or 16px, 20px — experiment with these values */
 }
 
-/* Optional: more noticeable on mobile */
-@media (max-width: 768px) {
-  .search-bar {
-    margin-top: 16px;
-  }
-}
+
 
   #search-input {
     width: 100%;
@@ -2438,5 +2434,6 @@ body.mobile-view nav ul li a:hover {
     color: #007bff;
 
 }
+
 
 
