@@ -12,6 +12,53 @@ body {
     background-color: #f4f4f4;
 }
 
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;          /* stack logo + search vertically if needed */
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .search-bar {
+    width: 100%;
+    max-width: none;
+    position: relative;
+  }
+
+  #search-input {
+    width: 100%;
+    height: 48px;                    /* good touch target */
+    padding: 0 48px 0 16px;          /* space for icon on right */
+    font-size: 16px;
+    border-radius: 999px;            /* pill shape – modern & friendly */
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+  }
+
+  .search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  /* Optional: make it sticky if header is tall */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+}
+
 /* Header Styles (Desktop) */
 header {
     background-color: #fff;
@@ -2381,3 +2428,4 @@ body.mobile-view nav ul li a:hover {
     color: #007bff;
 
 }
+
