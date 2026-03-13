@@ -9,7 +9,92 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Quick fixes for centering & mobile feel */
+        .swiper {
+            padding-bottom: 50px;
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            align-items: center;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            transition: all 0.35s ease;
+            opacity: 0.65;
+            transform: scale(0.92);
+        }
+
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1.00);
+        }
+
+        @media (max-width: 639px) {
+            .swiper-slide {
+                width: 88% !important;
+            }
+        }
+
+        .product-card {
+            width: 100%;
+            max-width: 340px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        }
+
+        .product-info {
+            padding: 12px 16px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin: 8px 0 4px;
+            font-size: 1.05rem;
+        }
+
+        .price {
+            color: #e44d26;
+            font-weight: bold;
+            font-size: 1.15rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px 16px;
+            justify-content: center;
+        }
+
+        .add-to-cart, .add-to-compare {
+            flex: 1;
+            padding: 10px;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .add-to-wishlist {
+            width: 44px;
+            height: 44px;
+            font-size: 1.3rem;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,25 +107,15 @@
                 </a>
             </div>
             <div class="search-bar">
-    <input 
-        type="search" 
-        id="search-input" 
-        placeholder="Search products…" 
-        aria-label="Search products"
-    >
-    <button 
-        type="button" 
-        class="search-btn" 
-        id="search-btn" 
-        aria-label="Search"
-    >
-        <i class="fas fa-search"></i>
-    </button>
-</div>
+                <input type="search" id="search-input" placeholder="Search products…" aria-label="Search products">
+                <button type="button" class="search-btn" id="search-btn" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
             <div class="user-actions">
                 <a href="compare.html" class="action-icon" id="compare-count" aria-label="Compare products">Compare (<span>0</span>)</a>
                 <a href="wishlist.html" class="action-icon" id="wishlist-count" aria-label="Wishlist">Wishlist (<span>0</span>)</a>
-                <a href="cart.html"   class="action-icon" id="cart-count" aria-label="Shopping cart">Cart (<span>0</span>)</a>
+                <a href="cart.html" class="action-icon" id="cart-count" aria-label="Shopping cart">Cart (<span>0</span>)</a>
                 <a href="cart.html" class="action-icon view-cart-btn">View Cart</a>
             </div>
         </div>
@@ -74,7 +149,7 @@
 
             <div class="swiper">
                 <div class="swiper-wrapper" id="product-list">
-                    <!-- Products will stay here – logic below handles them -->
+                    <!-- Products populated by JS -->
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev" aria-label="Previous product"></div>
@@ -123,23 +198,20 @@
         </div>
     </div>
 
-    <!-- ──────────────────────────────────────────────── -->
-    <!-- JavaScript – all essential logic inline for demo   -->
-    <!-- Later move to external files                       -->
-    <!-- ──────────────────────────────────────────────── -->
-
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        // 1. Swiper init
+        // ─── Swiper with centered slides ────────────────────────────────
         let swiper;
         try {
             swiper = new Swiper('.swiper', {
                 loop: true,
-                slidesPerView: 1,
+                slidesPerView: 1.08,               // slight peek on mobile
+                centeredSlides: true,              // centers active slide
+                centeredSlidesBounds: true,
                 spaceBetween: 16,
+                grabCursor: true,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -147,24 +219,26 @@
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
+                    dynamicBullets: true,
                 },
                 breakpoints: {
-                    640:  { slidesPerView: 2, spaceBetween: 20 },
-                    1024: { slidesPerView: 3, spaceBetween: 24 },
+                    480:  { slidesPerView: 1.1  },
+                    640:  { slidesPerView: 2, centeredSlides: false },
+                    1024: { slidesPerView: 3, centeredSlides: false },
                 }
             });
         } catch (err) {
             console.error('Swiper failed:', err);
         }
 
-        // 2. Simple product data (you can move to data.js later)
+        // Sample products
         const products = [
             { id: 1, name: "Apple iPhone 15 Pro Max 256GB", price: "ZMW 29,999.12", img: "iphones.png" },
             { id: 2, name: "Casio G-Shock", price: "ZMW 4,331.45", img: "GSHOCK.png" },
             { id: 3, name: "CAT S62 Smartphone", price: "ZMW 6,336.38", img: "CATS62.png" },
         ];
 
-        // Render products
+        // Populate slides
         const productList = document.getElementById('product-list');
         if (productList) {
             products.forEach(p => {
@@ -182,9 +256,9 @@
                             <div class="rating" aria-label="5 stars">★★★★★</div>
                         </div>
                         <div class="product-actions">
-                            <button type="button" class="add-to-cart"    data-id="${p.id}">Add to Cart</button>
+                            <button type="button" class="add-to-cart" data-id="${p.id}">Add to Cart</button>
                             <button type="button" class="add-to-wishlist" data-id="${p.id}">♡</button>
-                            <button type="button" class="add-to-compare"  data-id="${p.id}">Compare</button>
+                            <button type="button" class="add-to-compare" data-id="${p.id}">Compare</button>
                         </div>
                     </div>
                 `;
@@ -193,37 +267,29 @@
             if (swiper) swiper.update();
         }
 
-        // 3. Update counters
+        // Update counters
         function updateCounts() {
             const cart     = JSON.parse(localStorage.getItem('cart')     || '[]');
             const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
             const compare  = JSON.parse(localStorage.getItem('compare')  || '[]');
-
             document.getElementById('cart-count')    .innerHTML = `Cart (${cart.length})`;
             document.getElementById('wishlist-count').innerHTML = `Wishlist (${wishlist.length})`;
             document.getElementById('compare-count') .innerHTML = `Compare (${compare.length})`;
         }
 
-        // 4. Delegated click handler for all action buttons
+        // Action buttons (delegated)
         document.addEventListener('click', e => {
             const btn = e.target.closest('.add-to-cart, .add-to-wishlist, .add-to-compare');
             if (!btn) return;
-
             const id = parseInt(btn.dataset.id);
             if (!id) return;
 
             let key, msg;
-
-            if (btn.classList.contains('add-to-cart')) {
-                key = 'cart';     msg = 'Added to cart!';
-            } else if (btn.classList.contains('add-to-wishlist')) {
-                key = 'wishlist'; msg = 'Added to wishlist!';
-            } else if (btn.classList.contains('add-to-compare')) {
-                key = 'compare';  msg = 'Added to compare!';
-            }
+            if (btn.classList.contains('add-to-cart'))     { key = 'cart';     msg = 'Added to cart!'; }
+            else if (btn.classList.contains('add-to-wishlist')) { key = 'wishlist'; msg = 'Added to wishlist!'; }
+            else if (btn.classList.contains('add-to-compare'))  { key = 'compare';  msg = 'Added to compare!'; }
 
             let list = JSON.parse(localStorage.getItem(key) || '[]');
-
             if (list.includes(id)) {
                 alert('Already in list!');
                 return;
@@ -233,7 +299,6 @@
             localStorage.setItem(key, JSON.stringify(list));
             updateCounts();
 
-            // Visual feedback
             if (btn.classList.contains('add-to-wishlist')) {
                 btn.textContent = '❤️';
                 btn.style.color = 'red';
@@ -250,21 +315,17 @@
             alert(msg);
         });
 
-        // 5. Search button
+        // Search
         document.getElementById('search-btn')?.addEventListener('click', () => {
             const term = document.getElementById('search-input')?.value?.trim();
-            if (term) {
-                window.location.href = `products.html?search=${encodeURIComponent(term)}`;
-            } else {
-                alert('Please enter a search term');
-            }
+            if (term) window.location.href = `products.html?search=${encodeURIComponent(term)}`;
+            else alert('Please enter a search term');
         });
 
-        // 6. Hamburger menu toggle
+        // Hamburger menu
         const hamburger = document.querySelector('.hamburger');
         const nav = document.getElementById('main-nav');
         const overlay = document.querySelector('.nav-overlay');
-
         hamburger?.addEventListener('click', () => {
             const expanded = hamburger.getAttribute('aria-expanded') === 'true';
             hamburger.setAttribute('aria-expanded', !expanded);
@@ -272,7 +333,6 @@
             overlay.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
-
         overlay?.addEventListener('click', () => {
             hamburger.setAttribute('aria-expanded', 'false');
             nav.classList.remove('active');
@@ -280,7 +340,7 @@
             document.body.classList.remove('menu-open');
         });
 
-        // 7. Newsletter & Free guide – client-side simulation
+        // Newsletter & modal simulation
         document.getElementById('newsletter-form')?.addEventListener('submit', e => {
             e.preventDefault();
             alert('Thank you! You are now subscribed.');
@@ -289,7 +349,7 @@
 
         document.getElementById('free-guide-form')?.addEventListener('submit', e => {
             e.preventDefault();
-            alert('Guide download link sent to your email! (demo)');
+            alert('Guide download link sent! (demo)');
             document.getElementById('free-guide-modal').hidden = true;
         });
 
@@ -301,16 +361,12 @@
             document.getElementById('free-guide-modal').hidden = true;
         });
 
-        // Show modal after 8 seconds (demo)
         setTimeout(() => {
             document.getElementById('free-guide-modal').hidden = false;
         }, 8000);
 
-        // Initial counts
         updateCounts();
     });
     </script>
 </body>
 </html>
-
-
