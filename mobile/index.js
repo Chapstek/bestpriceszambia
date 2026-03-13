@@ -10,23 +10,50 @@ const products = [
 ];
 
 // Initialize Swiper
-const swiper = new Swiper('.swiper-container', {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    breakpoints: {
-        1024: { slidesPerView: 4 },
-        768: { slidesPerView: 3 },
-        480: { slidesPerView: 1.25 },
-        0: { slidesPerView: 1.25 }
-    }
+// Wait until DOM and Swiper library are ready
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ────────────────────────────────────────────────
+    //  Option A – Most common & recommended (2024/2025 style)
+    // ────────────────────────────────────────────────
+    const swiper = new Swiper('.swiper', {
+        // Basic settings
+        direction: 'horizontal',
+        loop: true,               // infinite loop
+        slidesPerView: 1,         // 1 product on mobile
+        spaceBetween: 16,
+
+        // Responsive breakpoints
+        breakpoints: {
+            640:  { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 24 },
+            1280: { slidesPerView: 4, spaceBetween: 32 },
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // Pagination dots
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        // Optional: keyboard control & a11y
+        keyboard: {
+            enabled: true,
+        },
+        a11y: {
+            prevSlideMessage: 'Previous product',
+            nextSlideMessage: 'Next product',
+        },
+    });
+
+    // Optional: debug line – remove later
+    console.log("Swiper initialized →", swiper);
 });
 
 // Update Counts (for cart, wishlist, compare)
@@ -219,4 +246,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateBreadcrumb();
+
 });
