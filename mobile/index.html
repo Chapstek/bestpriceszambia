@@ -8,94 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" >
-    <link rel="stylesheet" href="styles.css"/>
-    <style>
-        /* Quick fixes for centering & mobile feel */
-        .swiper {
-            padding-bottom: 50px;
-            overflow: hidden;
-        }
-
-        .swiper-wrapper {
-            align-items: center;
-        }
-
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            transition: all 0.35s ease;
-            opacity: 0.65;
-            transform: scale(0.92);
-        }
-
-        .swiper-slide-active {
-            opacity: 1;
-            transform: scale(1.00);
-        }
-
-        @media (max-width: 639px) {
-            .swiper-slide {
-                width: 88% !important;
-            }
-        }
-
-        .product-card {
-            width: 100%;
-            max-width: 340px;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-        }
-
-        .product-info {
-            padding: 12px 16px;
-            text-align: center;
-        }
-
-        .product-name {
-            font-weight: 600;
-            margin: 8px 0 4px;
-            font-size: 1.05rem;
-        }
-
-        .price {
-            color: #e44d26;
-            font-weight: bold;
-            font-size: 1.15rem;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 8px;
-            padding: 0 16px 16px;
-            justify-content: center;
-        }
-
-        .add-to-cart, .add-to-compare {
-            flex: 1;
-            padding: 10px;
-            font-size: 0.9rem;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background: #f8f9fa;
-            cursor: pointer;
-        }
-
-        .add-to-wishlist {
-            width: 44px;
-            height: 44px;
-            font-size: 1.3rem;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -188,28 +102,31 @@
     <!-- Free Guide Modal -->
     <div class="modal" id="free-guide-modal" role="dialog" aria-modal="true" aria-labelledby="free-guide-heading" hidden>
         <div class="modal-content">
-            <button type="button" class="modal-close" id="free-guide-modal-close" aria-label="Close">×</button>
+            <button type="button" class="modal-close" id="free-guide-modal-close" aria-label="Close dialog">×</button>
             <h2 id="free-guide-heading">Get Our Free Guide!</h2>
-            <p>Download "Top 10 Technology Trends for 2025" instantly — no cost.</p>
-            <form id="free-guide-form">
-                <input type="email" id="free-guide-email" placeholder="Enter your email" required>
+            <p id="free-guide-desc">Download "Top 10 Technology Trends for 2025" instantly — no cost, no catch.</p>
+
+            <form id="free-guide-form" aria-label="Free guide download form">
+                <input type="email" id="free-guide-email" placeholder="Enter your email" required aria-required="true">
                 <button type="submit">Download Now</button>
             </form>
+
             <button type="button" class="modal-decline" id="free-guide-modal-decline">No thanks</button>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        // ─── Swiper with centered slides ────────────────────────────────
+        // ─── Swiper ─────────────────────────────────────────────────────
         let swiper;
         try {
             swiper = new Swiper('.swiper', {
                 loop: true,
-                slidesPerView: 1.08,               // slight peek on mobile
-                centeredSlides: true,              // centers active slide
+                slidesPerView: 1.08,
+                centeredSlides: true,
                 centeredSlidesBounds: true,
                 spaceBetween: 16,
                 grabCursor: true,
@@ -268,7 +185,7 @@
             if (swiper) swiper.update();
         }
 
-        // Update counters
+        // ─── Cart / Wishlist / Compare ──────────────────────────────────
         function updateCounts() {
             const cart     = JSON.parse(localStorage.getItem('cart')     || '[]');
             const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
@@ -278,7 +195,6 @@
             document.getElementById('compare-count') .innerHTML = `Compare (${compare.length})`;
         }
 
-        // Action buttons (delegated)
         document.addEventListener('click', e => {
             const btn = e.target.closest('.add-to-cart, .add-to-wishlist, .add-to-compare');
             if (!btn) return;
@@ -316,17 +232,21 @@
             alert(msg);
         });
 
-        // Search
+        // ─── Search ─────────────────────────────────────────────────────
         document.getElementById('search-btn')?.addEventListener('click', () => {
             const term = document.getElementById('search-input')?.value?.trim();
-            if (term) window.location.href = `products.html?search=${encodeURIComponent(term)}`;
-            else alert('Please enter a search term');
+            if (term) {
+                window.location.href = `products.html?search=${encodeURIComponent(term)}`;
+            } else {
+                alert('Please enter a search term');
+            }
         });
 
-        // Hamburger menu
+        // ─── Hamburger Menu ─────────────────────────────────────────────
         const hamburger = document.querySelector('.hamburger');
         const nav = document.getElementById('main-nav');
         const overlay = document.querySelector('.nav-overlay');
+
         hamburger?.addEventListener('click', () => {
             const expanded = hamburger.getAttribute('aria-expanded') === 'true';
             hamburger.setAttribute('aria-expanded', !expanded);
@@ -334,6 +254,7 @@
             overlay.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
+
         overlay?.addEventListener('click', () => {
             hamburger.setAttribute('aria-expanded', 'false');
             nav.classList.remove('active');
@@ -341,34 +262,54 @@
             document.body.classList.remove('menu-open');
         });
 
-        // Newsletter & modal simulation
+        // ─── Newsletter ─────────────────────────────────────────────────
         document.getElementById('newsletter-form')?.addEventListener('submit', e => {
             e.preventDefault();
             alert('Thank you! You are now subscribed.');
             e.target.reset();
         });
 
-        document.getElementById('free-guide-form')?.addEventListener('submit', e => {
-            e.preventDefault();
-            alert('Guide download link sent! (demo)');
-            document.getElementById('free-guide-modal').hidden = true;
-        });
+        // ─── Free Guide Modal ───────────────────────────────────────────
+        const modal = document.getElementById('free-guide-modal');
+        if (modal) {
+            const closeModal = () => {
+                modal.hidden = true;
+            };
 
-        document.getElementById('free-guide-modal-close')?.addEventListener('click', () => {
-            document.getElementById('free-guide-modal').hidden = true;
-        });
+            // Close buttons
+            document.getElementById('free-guide-modal-close')?.addEventListener('click', closeModal);
+            document.getElementById('free-guide-modal-decline')?.addEventListener('click', closeModal);
 
-        document.getElementById('free-guide-modal-decline')?.addEventListener('click', () => {
-            document.getElementById('free-guide-modal').hidden = true;
-        });
+            // Click outside content (backdrop)
+            modal.addEventListener('click', e => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
 
-        setTimeout(() => {
-            document.getElementById('free-guide-modal').hidden = false;
-        }, 8000);
+            // Escape key
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && !modal.hidden) {
+                    closeModal();
+                }
+            });
 
+            // Form submit
+            document.getElementById('free-guide-form')?.addEventListener('submit', e => {
+                e.preventDefault();
+                alert('Guide download link sent to your email! (demo)');
+                closeModal();
+            });
+
+            // Auto-show after 8 seconds
+            setTimeout(() => {
+                modal.hidden = false;
+            }, 8000);
+        }
+
+        // Initial counts
         updateCounts();
     });
     </script>
 </body>
 </html>
-
