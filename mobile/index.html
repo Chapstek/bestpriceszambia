@@ -269,47 +269,74 @@
             e.target.reset();
         });
 
-        // ─── Free Guide Modal ───────────────────────────────────────────
-        const modal = document.getElementById('free-guide-modal');
-        if (modal) {
-            const closeModal = () => {
-                modal.hidden = true;
-            };
+       // ─── Free Guide Modal ───────────────────────────────────────────
+const modal = document.getElementById('free-guide-modal');
 
-            // Close buttons
-            document.getElementById('free-guide-modal-close')?.addEventListener('click', closeModal);
-            document.getElementById('free-guide-modal-decline')?.addEventListener('click', closeModal);
+if (!modal) {
+    console.error("Modal element NOT found in DOM");
+} else {
+    console.log("Modal element found → ready to attach listeners");
 
-            // Click outside content (backdrop)
-            modal.addEventListener('click', e => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
+    const closeModal = () => {
+        console.log("closeModal function called");
+        modal.hidden = true;
+    };
 
-            // Escape key
-            document.addEventListener('keydown', e => {
-                if (e.key === 'Escape' && !modal.hidden) {
-                    closeModal();
-                }
-            });
+    const closeBtn = document.getElementById('free-guide-modal-close');
+    const declineBtn = document.getElementById('free-guide-modal-decline');
 
-            // Form submit
-            document.getElementById('free-guide-form')?.addEventListener('submit', e => {
-                e.preventDefault();
-                alert('Guide download link sent to your email! (demo)');
-                closeModal();
-            });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            console.log("× button clicked");
+            closeModal();
+        });
+    } else {
+        console.error("Close button (#free-guide-modal-close) NOT found");
+    }
 
-            // Auto-show after 8 seconds
-            setTimeout(() => {
-                modal.hidden = false;
-            }, 8000);
+    if (declineBtn) {
+        declineBtn.addEventListener('click', () => {
+            console.log("'No thanks' button clicked");
+            closeModal();
+        });
+    } else {
+        console.error("'No thanks' button (#free-guide-modal-decline) NOT found");
+    }
+
+    // Backdrop click
+    modal.addEventListener('click', e => {
+        if (e.target === modal) {
+            console.log("Backdrop clicked");
+            closeModal();
         }
+    });
 
+    // Escape key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.hidden) {
+            console.log("Escape key pressed → closing modal");
+            closeModal();
+        }
+    });
+
+    // Form submit (demo)
+    document.getElementById('free-guide-form')?.addEventListener('submit', e => {
+        e.preventDefault();
+        console.log("Form submitted");
+        alert('Guide download link sent (demo)');
+        closeModal();
+    });
+
+    // Auto-show
+    setTimeout(() => {
+        console.log("Auto-showing modal after delay");
+        modal.hidden = false;
+    }, 8000);
+}
         // Initial counts
         updateCounts();
     });
     </script>
 </body>
 </html>
+
