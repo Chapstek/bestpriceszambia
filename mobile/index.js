@@ -96,55 +96,54 @@ document.addEventListener('DOMContentLoaded', () => {
         if (swiper) swiper.update();
     }
 
-    // 3. Delegated click handler for all action buttons (cart, wishlist, compare)
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.add-to-cart, .add-to-wishlist, .add-to-compare');
-        if (!btn) return;
-
-        e.preventDefault();
-        const productId = parseInt(btn.dataset.productId);
-        if (!productId) return;
-
-        let key, successMessage, alreadyMessage;
-
-        if (btn.classList.contains('add-to-cart')) {
-            key = 'cart';
-            successMessage = 'Added to cart!';
-            alreadyMessage = 'Already in cart!';
-        } else if (btn.classList.contains('add-to-wishlist')) {
-            key = 'wishlist';
-            successMessage = 'Added to wishlist!';
-            alreadyMessage = 'Already in wishlist!';
-        } else if (btn.classList.contains('add-to-compare')) {
-            key = 'compare';
-            successMessage = 'Added to compare!';
-            alreadyMessage = 'Already in compare!';
-        }
-
-        let items = JSON.parse(localStorage.getItem(key)) || [];
-
-        if (items.includes(productId)) {
-            alert(alreadyMessage);
-            return;
-        }
-
-        // Disable button briefly + visual feedback
-        btn.disabled = true;
-        const originalText = btn.textContent;
-        btn.textContent = '✓ Added';
-
-        items.push(productId);
-        localStorage.setItem(key, JSON.stringify(items));
-        updateCounts();
-
-        alert(successMessage);
-
-        // Restore button after 1.2 seconds
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.disabled = false;
-        }, 1200);
+    // Add to Cart
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = parseInt(button.getAttribute('data-product-id'));
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (!cart.includes(productId)) {
+                cart.push(productId);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCounts();
+                alert('Product added to cart!');
+            } else {
+                alert('Product already in cart!');
+            }
+        });
     });
+
+    // Add to Wishlist
+    document.querySelectorAll('.add-to-wishlist').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = parseInt(button.getAttribute('data-product-id'));
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                updateCounts();
+                alert('Product added to wishlist!');
+            } else {
+                alert('Product already in wishlist!');
+            }
+        });
+    });
+
+    // Add to Compare
+    document.querySelectorAll('.add-to-compare').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = parseInt(button.getAttribute('data-product-id'));
+            const compare = JSON.parse(localStorage.getItem('compare')) || [];
+            if (!compare.includes(productId)) {
+                compare.push(productId);
+                localStorage.setItem('compare', JSON.stringify(compare));
+                updateCounts();
+                alert('Product added to compare!');
+            } else {
+                alert('Product already in compare!');
+            }
+        });
+    });
+
 
     // 4. Search button
     const searchBtn = document.getElementById('search-btn');
@@ -212,3 +211,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateBreadcrumb();
 });
+
