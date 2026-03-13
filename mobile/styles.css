@@ -20,28 +20,22 @@ body {
   }
 
   .search-bar {
+    position: relative;           /* important – makes absolute positioning work inside */
     width: 100%;
-    max-width: none;
-    position: relative;
-      margin-top: 16px;
-  }
-    .search-bar {
-  margin-top: 12px;           /* or 16px, 20px — experiment with these values */
+    max-width: 500px;             /* or whatever fits your design */
 }
 
-
-
-  #search-input {
+#search-input {
     width: 100%;
-    height: 48px;                    /* good touch target */
-    padding: 0 48px 0 16px;          /* space for icon on right */
+    height: 48px;
+    padding: 0 48px 0 16px;       /* left padding for text, right padding for icon button */
     font-size: 16px;
-    border-radius: 999px;            /* pill shape – modern & friendly */
-    border: 1px solid #ddd;
-    background: #f9f9f9;
-  }
+    border: 1px solid #ccc;
+    border-radius: 999px;         /* pill shape */
+    box-sizing: border-box;
+}
 
-  .search-btn {
+.search-btn {
     position: absolute;
     right: 8px;
     top: 50%;
@@ -50,11 +44,21 @@ body {
     height: 40px;
     background: none;
     border: none;
-    color: #333;
+    color: #555;
     font-size: 1.3rem;
     cursor: pointer;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+/* Optional: hover/focus effect */
+.search-btn:hover,
+.search-btn:focus {
+    color: #000;
+    background: rgba(0,0,0,0.08);
+    border-radius: 50%;
+}
   /* Optional: make it sticky if header is tall */
   header {
     position: sticky;
@@ -2434,6 +2438,7 @@ body.mobile-view nav ul li a:hover {
     color: #007bff;
 
 }
+
 
 
 
