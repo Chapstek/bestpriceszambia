@@ -80,12 +80,18 @@
             <a href="terms.html">Terms of Service</a>
             <a href="privacy.html">Privacy Policy</a>
         </div>
-        <div class="newsletter">
-            <h2>Subscribe to Our Newsletter</h2>
-            <form id="newsletter-form" aria-label="Newsletter subscription">
-                <input type="email" id="newsletter-email" placeholder="Your email address" required aria-required="true">
-                <button type="submit">Subscribe</button>
-            </form>
+        <!-- Lead Magnet Pop-up -->
+        <div class="popup" id="lead-magnet-popup">
+            <div class="popup-content">
+                <span class="close-btn" id="close-popup-btn">×</span>
+                <h2>Get Our Free Guide!</h2>
+                <p>Download "Top 10 Technology Trends for 2025" for free!</p>
+                <form id="lead-magnet-form">
+                    <label for="email-input">Enter your email</label>
+                    <input type="email" id="email-input" required>
+                    <button type="submit">Download Now</button>
+                </form>
+            </div>
         </div>
     </footer>
 
@@ -280,5 +286,6 @@
     </script>
 </body>
 </html>
+
 
 
