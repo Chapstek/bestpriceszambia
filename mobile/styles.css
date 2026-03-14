@@ -15,6 +15,21 @@ body {
   min-height: 100vh;
 }
 
+/* Prevent footer from being hidden behind fixed bottom nav */
+body {
+    padding-bottom: 70px;          /* Adjust this value based on your bottom-nav height */
+}
+
+/* Or more precisely target the main content area */
+main {
+    padding-bottom: 80px;          /* Slightly more than nav height to be safe */
+}
+
+/* Make sure the footer has some breathing room */
+footer {
+    padding-bottom: 20px;          /* Optional – extra space at the very bottom */
+}
+
 /* ============================================
    HEADER & TOP NAV
    ============================================ */
