@@ -30,6 +30,68 @@ footer {
     padding-bottom: 20px;          /* Optional – extra space at the very bottom */
 }
 
+/* Fix 1 – Make sure search-bar is positioned correctly and has space */
+.search-bar {
+    position: relative;           /* required for absolute child */
+    width: 100%;
+    min-height: 44px;             /* give it height */
+    max-width: 500px;             /* or whatever fits your layout */
+}
+
+/* Fix 2 – Standard inside-icon button styling (most reliable) */
+#search-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 48px 0 16px;       /* ← right padding for button */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    box-sizing: border-box;
+}
+
+.search-btn {
+    position: absolute !important;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-size: 1.4rem;            /* make icon clearly visible */
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;                  /* make sure it's on top */
+}
+
+/* Make icon more visible + hover effect */
+.search-btn:hover,
+.search-btn:focus {
+    color: #000;
+    background: rgba(0,0,0,0.08);
+    border-radius: 50%;
+}
+
+/* Fix 3 – Emergency visibility overrides */
+.search-btn,
+.search-btn * {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Fix 4 – If Font Awesome is not loading */
+.search-btn::before {
+    content: "\f002";             /* fa-search fallback */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 1.4rem;
+}
+
 /* ============================================
    HEADER & TOP NAV
    ============================================ */
