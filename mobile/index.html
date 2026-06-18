@@ -141,6 +141,9 @@
             { id: 2, name: "Casio G-Shock", price: "ZMW 4,331.45", img: "GSHOCK.png" },
             { id: 3, name: "CAT S62 Smartphone", price: "ZMW 6,336.38", img: "CATS62.png" },
         ];
+        
+        //store new products in localStorage
+        localStorage.setItem('products', JSON.stringify(products));
 
         // Populate slides
         const productList = document.getElementById('product-list');
@@ -194,7 +197,7 @@
 
             let list = JSON.parse(localStorage.getItem(key) || '[]');
             if (list.includes(id)) {
-                alert('Already in list!');
+                showToast(`Already in ${key}!`);
                 return;
             }
 
@@ -215,8 +218,11 @@
                 }, 1200);
             }
 
-            alert(msg);
+            ShowToast(msg);
         });
+
+        //use toast notification instead of alert for better UX in production
+        function
 
         // ─── Search ─────────────────────────────────────────────────────
         document.getElementById('search-btn')?.addEventListener('click', () => {
