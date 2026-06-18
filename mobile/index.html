@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,22 +23,24 @@
                     <img src="loyalbir.png" alt="Loyalbir logo" width="140" height="40">
                 </a>
             </div>
+            
             <div class="search-bar">
-    <input 
-        type="search" 
-        id="search-input" 
-        placeholder="Search products…" 
-        aria-label="Search products"
-    >
-    <button id="search-btn">
-        Search
-    </button>
-    <!-- Remove the <button> entirely or keep it without icon if you want a visible button -->
-</div>
+                <input type="search" id="search-input" placeholder="Search products…" aria-label="Search products">
+                <button id="search-btn" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
             <div class="user-actions">
-                <a href="compare.html" class="action-icon" id="compare-count" aria-label="Compare products">Compare (<span>0</span>)</a>
-                <a href="wishlist.html" class="action-icon" id="wishlist-count" aria-label="Wishlist">Wishlist (<span>0</span>)</a>
-                <a href="cart.html" class="action-icon" id="cart-count" aria-label="Shopping cart">Cart (<span>0</span>)</a>
+                <a href="compare.html" class="action-icon" id="compare-count" aria-label="Compare products">
+                    Compare (<span>0</span>)
+                </a>
+                <a href="wishlist.html" class="action-icon" id="wishlist-count" aria-label="Wishlist">
+                    Wishlist (<span>0</span>)
+                </a>
+                <a href="cart.html" class="action-icon" id="cart-count" aria-label="Shopping cart">
+                    Cart (<span>0</span>)
+                </a>
                 <a href="cart.html" class="action-icon view-cart-btn">View Cart</a>
             </div>
         </div>
@@ -70,9 +73,7 @@
             </div>
 
             <div class="swiper">
-                <div class="swiper-wrapper" id="product-list">
-                    <!-- Products populated by JS -->
-                </div>
+                <div class="swiper-wrapper" id="product-list"></div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev" aria-label="Previous product"></div>
                 <div class="swiper-button-next" aria-label="Next product"></div>
@@ -87,7 +88,16 @@
             <a href="terms.html">Terms of Service</a>
             <a href="privacy.html">Privacy Policy</a>
         </div>
-       
+        <!-- Optional Newsletter -->
+        <div class="newsletter">
+            <form id="newsletter-form">
+                <label for="newsletter-email">Subscribe to our newsletter</label>
+                <div class="newsletter-input">
+                    <input type="email" id="newsletter-email" placeholder="your@email.com" required>
+                    <button type="submit">Subscribe</button>
+                </div>
+            </form>
+        </div>
     </footer>
 
     <nav class="bottom-nav" aria-label="Main mobile navigation">
@@ -100,33 +110,23 @@
         </ul>
     </nav>
 
-
     <!-- Scripts -->
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-
-        // ─── Swiper ─────────────────────────────────────────────────────
+        // Swiper
         let swiper;
         try {
             swiper = new Swiper('.swiper', {
                 loop: true,
                 slidesPerView: 1.08,
                 centeredSlides: true,
-                centeredSlidesBounds: true,
                 spaceBetween: 16,
                 grabCursor: true,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                    dynamicBullets: true,
-                },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
                 breakpoints: {
-                    480:  { slidesPerView: 1.1  },
+                    480:  { slidesPerView: 1.1 },
                     640:  { slidesPerView: 2, centeredSlides: false },
                     1024: { slidesPerView: 3, centeredSlides: false },
                 }
@@ -141,9 +141,7 @@
             { id: 2, name: "Casio G-Shock", price: "ZMW 4,331.45", img: "GSHOCK.png" },
             { id: 3, name: "CAT S62 Smartphone", price: "ZMW 6,336.38", img: "CATS62.png" },
         ];
-        
-         
-        // Populate slides
+
         const productList = document.getElementById('product-list');
         if (productList) {
             products.forEach(p => {
@@ -172,30 +170,33 @@
             if (swiper) swiper.update();
         }
 
-        // ─── Cart / Wishlist / Compare ──────────────────────────────────
+        // Update counts
         function updateCounts() {
-            const cart     = JSON.parse(localStorage.getItem('cart')     || '[]');
+            const cart     = JSON.parse(localStorage.getItem('cart') || '[]');
             const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-            const compare  = JSON.parse(localStorage.getItem('compare')  || '[]');
-            document.getElementById('cart-count')    .innerHTML = `Cart (${cart.length})`;
+            const compare  = JSON.parse(localStorage.getItem('compare') || '[]');
+            
+            document.getElementById('cart-count').innerHTML = `Cart (${cart.length})`;
             document.getElementById('wishlist-count').innerHTML = `Wishlist (${wishlist.length})`;
-            document.getElementById('compare-count') .innerHTML = `Compare (${compare.length})`;
+            document.getElementById('compare-count').innerHTML = `Compare (${compare.length})`;
         }
 
+        // Add to cart/wishlist/compare
         document.addEventListener('click', e => {
             const btn = e.target.closest('.add-to-cart, .add-to-wishlist, .add-to-compare');
             if (!btn) return;
+
             const id = parseInt(btn.dataset.id);
             if (!id) return;
 
             let key, msg;
-            if (btn.classList.contains('add-to-cart'))     { key = 'cart';     msg = 'Added to cart!'; }
+            if (btn.classList.contains('add-to-cart'))     { key = 'cart'; msg = 'Added to cart!'; }
             else if (btn.classList.contains('add-to-wishlist')) { key = 'wishlist'; msg = 'Added to wishlist!'; }
-            else if (btn.classList.contains('add-to-compare'))  { key = 'compare';  msg = 'Added to compare!'; }
+            else if (btn.classList.contains('add-to-compare'))  { key = 'compare'; msg = 'Added to compare!'; }
 
             let list = JSON.parse(localStorage.getItem(key) || '[]');
             if (list.includes(id)) {
-                showToast(`Already in ${key}!`);
+                alert('Already in list!');
                 return;
             }
 
@@ -213,16 +214,13 @@
                 setTimeout(() => {
                     btn.textContent = orig;
                     btn.disabled = false;
-                }, 1200);
+                }, 1500);
             }
 
-            ShowToast(msg);
+            alert(msg);
         });
 
-        //use toast notification instead of alert for better UX in production
-        function
-
-        // ─── Search ─────────────────────────────────────────────────────
+        // Search
         document.getElementById('search-btn')?.addEventListener('click', () => {
             const term = document.getElementById('search-input')?.value?.trim();
             if (term) {
@@ -232,7 +230,7 @@
             }
         });
 
-        // ─── Hamburger Menu ─────────────────────────────────────────────
+        // Hamburger
         const hamburger = document.querySelector('.hamburger');
         const nav = document.getElementById('main-nav');
         const overlay = document.querySelector('.nav-overlay');
@@ -252,24 +250,23 @@
             document.body.classList.remove('menu-open');
         });
 
-       // Handle Newsletter Form Submission
-    const newsletterform = document.getElementById('newsletter-form'); 
-    
-    if (newsletterform) {
+        // Newsletter
+        const newsletterform = document.getElementById('newsletter-form');
+        if (newsletterform) {
+            newsletterform.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('newsletter-email').value.trim();
+                if (!email) return;
 
-
-      newsletterform.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('newsletter-email').value;
-        const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
-        subscribers.push(email);
-        localStorage.setItem('subscribers', JSON.stringify(subscribers));
-        console.log('Subscriber email captured:', email);
-        alert('Thank you for subscribing!');
-        e.target.reset();
-    });
-
-    }
+                const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+                alert('Thank you for subscribing!');
+                newsletterform.reset();
+            });
+        }
 
         // Initial counts
         updateCounts();
@@ -277,6 +274,3 @@
     </script>
 </body>
 </html>
-
-
-
