@@ -29,6 +29,9 @@
         placeholder="Search products…" 
         aria-label="Search products"
     >
+    <button id="search-btn">
+        Search
+    </button>
     <!-- Remove the <button> entirely or keep it without icon if you want a visible button -->
 </div>
             <div class="user-actions">
@@ -246,7 +249,12 @@
         });
 
        // Handle Newsletter Form Submission
-    document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+    const newsletterform = document.getElementById('newsletter-form'); 
+    
+    if (newsletterform) {
+
+
+      newsletterform.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.getElementById('newsletter-email').value;
         const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
@@ -256,6 +264,8 @@
         alert('Thank you for subscribing!');
         e.target.reset();
     });
+
+    }
 
         // Initial counts
         updateCounts();
