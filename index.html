@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B2B Flooring Trader - Login</title>
+    <title>Loyalbir - Login</title>
     
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -128,6 +128,14 @@
             } catch (error) {
                 message.textContent = error.message;
             }
+             if (userCredential) {
+            const user = userCredential.user;
+            await saveUserToLocalStorage(user);
+            redirectToDashboard();
+        }
+
+
+
         }
 
         async function signup() {
@@ -168,7 +176,29 @@
             } catch (error) {
                 message.textContent = error.message;
             }
+              await saveUserToLocalStorage(user);
+        redirectToDashboard();
+
+
         }
+
+        async function saveUserToLocalStorage(user) {
+        try {
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            if (userDoc.exists) {
+                const userData = userDoc.data();
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+            } else {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    firstName: "User",
+                    email: user.email,
+                    uid: user.uid
+                }));
+            }
+        } catch (e) {
+            localStorage.setItem('currentUser', JSON.stringify({ firstName: "User", email: user.email }));
+        }
+    }
 
         function redirectToDashboard() {
             if (isMobileDevice()) {
