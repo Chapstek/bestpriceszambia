@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loyalbir - Login</title>
+    <title>B2B Flooring Trader - Login</title>
     
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -153,18 +153,16 @@
             }
 
             try {
-                // Create user in Firebase Auth
                 const userCredential = await auth.createUserWithEmailAndPassword(userData.email, password);
                 const user = userCredential.user;
 
-                // Save additional data to Firestore
                 await db.collection('users').doc(user.uid).set({
                     ...userData,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     uid: user.uid
                 });
 
-                alert("Account created successfully!");
+                alert("Account created successfully! Welcome!");
                 redirectToDashboard();
 
             } catch (error) {
@@ -184,10 +182,15 @@
             return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(navigator.userAgent.toLowerCase());
         }
 
-        // Auto redirect if already logged in
-        auth.onAuthStateChanged(user => {
-            if (user) redirectToDashboard();
-        });
+        // FIXED: Only redirect if user is already logged in
+        window.onload = function() {
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    redirectToDashboard();
+                }
+                // If no user → show login screen (default behavior)
+            });
+        };
     </script>
 </body>
 </html>
