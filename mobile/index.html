@@ -42,6 +42,13 @@
                     Cart (<span>0</span>)
                 </a>
                 <a href="cart.html" class="action-icon view-cart-btn">View Cart</a>
+
+                <!-- New: User Greeting + Logout -->
+                <div class="user-greeting" id="user-greeting" style="margin-left: 15px; font-weight: 500;">
+                    Hi, <span id="first-name">Guest</span>
+                </div>
+                <a href="#" id="logout-btn" style="margin-left: 10px; color: #dc3545; text-decoration: none;">Logout</a>
+
             </div>
         </div>
 
@@ -91,9 +98,9 @@
         <!-- Optional Newsletter -->
         <div class="newsletter">
             <form id="newsletter-form">
-                <label for="newsletter-email">Subscribe to our newsletter</label>
+                <label for="newsletter-email">Subscribe to our newsletter</label><br><br><br>
                 <div class="newsletter-input">
-                    <input type="email" id="newsletter-email" placeholder="your@email.com" required><br><br><br>
+                    <input type="email" id="newsletter-email" placeholder="your@email.com" required>
                     <button type="submit">Subscribe</button>
                 </div>
             </form>
@@ -114,6 +121,24 @@
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // === USER GREETING ===
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.firstName) {
+            document.getElementById('first-name').textContent = currentUser.firstName;
+        }
+
+        // Logout
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm("Are you sure you want to logout?")) {
+                    localStorage.removeItem('currentUser');
+                    window.location.href = '../index.html';   // Go back to login page
+                }
+            });
+        }
+
         // Swiper
         let swiper;
         try {
