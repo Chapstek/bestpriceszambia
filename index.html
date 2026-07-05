@@ -1,30 +1,193 @@
-<!-- index.html (root) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B2B Flooring Trader</title>
+    <title>Loyalbir - Login</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background: #0056b3; }
+        .toggle { color: #007bff; cursor: pointer; text-decoration: underline; }
+        .error { color: red; margin: 10px 0; }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <center><h2>Loyalbir</h2></center>
+        <h3 id="formTitle">Sign In</h3>
+
+        <!-- Sign In Form -->
+        <div id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button onclick="login()">Sign In</button>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupForm" class="hidden">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="address" placeholder="Home Address" required>
+            <input type="text" id="postalCode" placeholder="Postal Code" required>
+            <input type="text" id="state" placeholder="State / Province" required>
+            <input type="text" id="country" placeholder="Country" value="United States" required>
+            
+            <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="password" id="signupPassword" placeholder="Create Password" required>
+            
+            <button onclick="signup()">Create Account</button>
+        </div>
+
+        <p id="toggleText">Don't have an account? 
+            <span class="toggle" onclick="toggleForm()">Sign Up</span>
+        </p>
+        
+        <p id="message" class="error"></p>
+    </div>
+
     <script>
-        // Detect if the user is on a mobile device
-        function isMobileDevice() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
+        // ================== YOUR FIREBASE CONFIG ==================
+        const firebaseConfig = {
+  apiKey: "AIzaSyA5kvUdUNvYVPjnOq_wjLnp0SMnTQXgTcw",
+  authDomain: "best-prices-46409.firebaseapp.com",
+  projectId: "best-prices-46409",
+  storageBucket: "best-prices-46409.firebasestorage.app",
+  messagingSenderId: "681370330797",
+  appId: "1:681370330797:web:7799facc4294bc1f204824",
+  measurementId: "G-3LC5XR4F6B"
+};
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let isLogin = true;
+
+        function toggleForm() {
+            isLogin = !isLogin;
+            document.getElementById('loginForm').classList.toggle('hidden');
+            document.getElementById('signupForm').classList.toggle('hidden');
+            document.getElementById('formTitle').textContent = isLogin ? 'Sign In' : 'Create Account';
+            document.getElementById('toggleText').innerHTML = isLogin 
+                ? `Don't have an account? <span class="toggle" onclick="toggleForm()">Sign Up</span>`
+                : `Already have an account? <span class="toggle" onclick="toggleForm()">Sign In</span>`;
         }
 
-        // Redirect based on device type
-        if (isMobileDevice()) {
-            window.location.href = 'mobile/index.html';
-        } else {
-            window.location.href = 'desktop/index.html';
+        async function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const message = document.getElementById('message');
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                redirectToDashboard();
+            } catch (error) {
+                message.textContent = error.message;
+            }
         }
+
+        async function signup() {
+            const message = document.getElementById('message');
+            message.textContent = "";
+
+            const userData = {
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                address: document.getElementById('address').value.trim(),
+                postalCode: document.getElementById('postalCode').value.trim(),
+                state: document.getElementById('state').value.trim(),
+                country: document.getElementById('country').value.trim(),
+                email: document.getElementById('signupEmail').value.trim()
+            };
+
+            const password = document.getElementById('signupPassword').value;
+
+            if (!userData.email || !password || !userData.firstName || !userData.lastName) {
+                message.textContent = "Please fill all required fields";
+                return;
+            }
+
+            try {
+                // Create user in Firebase Auth
+                const userCredential = await auth.createUserWithEmailAndPassword(userData.email, password);
+                const user = userCredential.user;
+
+                // Save additional data to Firestore
+                await db.collection('users').doc(user.uid).set({
+                    ...userData,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    uid: user.uid
+                });
+
+                alert("Account created successfully!");
+                redirectToDashboard();
+
+            } catch (error) {
+                message.textContent = error.message;
+            }
+        }
+
+        function redirectToDashboard() {
+            if (isMobileDevice()) {
+                window.location.href = 'mobile/index.html';
+            } else {
+                window.location.href = 'desktop/index.html';
+            }
+        }
+
+        function isMobileDevice() {
+            return /mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(navigator.userAgent.toLowerCase());
+        }
+
+        // Auto redirect if already logged in
+        auth.onAuthStateChanged(user => {
+            if (user) redirectToDashboard();
+        });
     </script>
-    <noscript>
-        <p>Please enable JavaScript to access this website.</p>
-        <p>If you're on a desktop, <a href="desktop/index.html">click here</a>.</p>
-        <p>If you're on a mobile device, <a href="mobile/index.html">click here</a>.</p>
-    </noscript>
 </body>
 </html>
