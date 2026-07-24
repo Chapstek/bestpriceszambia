@@ -123,19 +123,13 @@
             const message = document.getElementById('message');
 
             try {
-                await auth.signInWithEmailAndPassword(email, password);
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                await saveUserToLocalStorage(user);
                 redirectToDashboard();
             } catch (error) {
                 message.textContent = error.message;
             }
-             if (userCredential) {
-            const user = userCredential.user;
-            await saveUserToLocalStorage(user);
-            redirectToDashboard();
-        }
-
-
-
         }
 
         async function signup() {
@@ -170,16 +164,13 @@
                     uid: user.uid
                 });
 
+                await saveUserToLocalStorage(user);
                 alert("Account created successfully! Welcome!");
                 redirectToDashboard();
 
             } catch (error) {
                 message.textContent = error.message;
             }
-              await saveUserToLocalStorage(user);
-        redirectToDashboard();
-
-
         }
 
         async function saveUserToLocalStorage(user) {
