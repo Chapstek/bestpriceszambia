@@ -1,29 +1,21 @@
 // Product Data (Simulated Database)
 const products = [
-    { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Latest iPhone with 256GB storage, perfect for professionals.", image: "iphones.png", rating: "★★★★★", brandId: 5, categoryId: 6 },
-    { id: 2, code: "ZMW4,068.71", name: "G-Shock", description: "Durable glue-down vinyl flooring, perfect for heavy traffic areas.", image: "Aurora.jpg", rating: "★★★★★", brandId: 2, categoryId: 2 },
-    { id: 3, code: "ZMW456.41", name: "Skirting and quarter rounds (Sold Separately)", description: "Matching skirting boards for 8mm laminates, sold separately.", image: "skirtings.jpg", rating: "★★★★★", brandId: 4, categoryId: 3 },
-    { id: 4, code: "ZMW394.85", name: "MDF Luxwrap Transition Laminates", description: "Transition laminates for seamless flooring transitions.", image: "mdf.jpg", rating: "★★★★★", brandId: 3, categoryId: 4 },
-    { id: 5, code: "ZMW472.61", name: "MDF Luxwrap Stair-Nosing", description: "Stair-nosing for safe and stylish stair edges.", image: "mdf_lux.jpg", rating: "★★★★★", brandId: 3, categoryId: 5 }
+    { id: 1, code: "ZMW29999", name: "Apple iPhone 15 Pro Max 256GB", description: "Platform OS iOS 17, upgradable to iOS 18.3.2 48 MP Front, 12 MP Back.", image: "iphones.png", rating: "★★★★★", brandId: 1, categoryId: 1 },
+    { id: 2, code: "ZMW4331", name: "G-Shock GA-2100-1A1", description: "Shock resistant, 200m water resistance, World time, Stopwatch & countdown timer, LED light", image: "GSHOCK.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
+    { id: 3, code: "ZMW6336", name: "CAT S62 Smartphone", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★", brandId: 3, categoryId: 1 }
 ];
 
 // Brand Data (Simulated Database)
 const brands = [
-    { id: 1, name: "ARmonia" },
-    { id: 2, name: "Aurora" },
-    { id: 3, name: "Luxwrap" },
-    { id: 4, name: "Quality Skirtings" },
-    { id: 5, name: "Apple" } // Added Apple brand
+    { id: 1, name: "Apple" },
+    { id: 2, name: "Casio" },
+    { id: 3, name: "CAT" }
 ];
 
 // Category Data (Simulated Database)
 const categories = [
-    { id: 1, name: "Laminate Flooring" },
-    { id: 2, name: "Vinyl Flooring" },
-    { id: 3, name: "Skirting Boards" },
-    { id: 4, name: "Transition Laminates" },
-    { id: 5, name: "Stair-Nosing" },
-    { id: 6, name: "Cell Phones & Smartphones" } // Added category for iPhone
+    { id: 1, name: "Phones" },
+    { id: 2, name: "Watches" }
 ];
 
 // Initialize Swiper
