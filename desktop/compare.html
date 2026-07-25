@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - Loyalbir</title>
+    <title>Compare Products - Loyalbir</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-top">
             <div class="logo">
@@ -30,35 +29,27 @@
         <nav>
             <ul>
                 <li><a href="index.html" id="nav-home">Home</a></li>
-          <!--      <li><a href="sellers.html" id="nav-sellers">Sellers</a></li>  -->
                 <li><a href="brands.html" id="nav-brands">All Brands</a></li>
                 <li><a href="categories.html" id="nav-categories">All Categories</a></li>
                 <li><a href="products.html" id="nav-products">Products</a></li>
-          <!--     <li><a href="services.html" id="nav-services">Services</a></li> -->
             </ul>
         </nav>
     </header>
 
-    <!-- Breadcrumb Navigation -->
     <div class="breadcrumb" id="breadcrumb">
-        <!-- Breadcrumb will be dynamically populated -->
+        <a href="index.html">Home</a><span class="separator">></span><span>Compare</span>
     </div>
 
-    <!-- Main Content -->
     <main>
-        <section class="cart">
-            <h2>Your Cart</h2>
-            <div class="cart-items" id="cart-items">
-                <!-- Cart items will be dynamically added here -->
+        <section class="products">
+            <div class="section-header">
+                <h2>Compare Products</h2>
+                <button type="button" class="search-btn" id="clear-compare-btn">Clear Compare</button>
             </div>
-            <div class="cart-total">
-                <h3>Total: <span id="cart-total">ZMW0.00</span></h3>
-                <button id="checkout-btn">Proceed to Checkout</button>
-            </div>
+            <div class="product-list" id="compare-list"></div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-links">
             <a href="#">About Us</a>
@@ -77,6 +68,6 @@
 
     <script src="session-ui.js"></script>
     <script src="compare-shared.js"></script>
-    <script src="cart.js"></script>
+    <script src="compare.js"></script>
 </body>
 </html>

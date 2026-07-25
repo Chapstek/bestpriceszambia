@@ -85,20 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Add to Compare
-    document.getElementById('add-to-compare-btn').addEventListener('click', () => {
-        const productId = parseInt(document.getElementById('add-to-compare-btn').getAttribute('data-product-id'));
-        const compare = JSON.parse(localStorage.getItem('compare')) || [];
-        if (!compare.includes(productId)) {
-            compare.push(productId);
-            localStorage.setItem('compare', JSON.stringify(compare));
-            updateCounts();
-            alert('Product added to compare!');
-        } else {
-            alert('Product already in compare!');
-        }
-    });
-
     // Update Counts
     updateCounts();
 
@@ -201,8 +187,3 @@ function updateCounts() {
     document.getElementById('wishlist-count').textContent = `Wishlist (${wishlist.length})`;
     document.getElementById('compare-count').textContent = `Compare (${compare.length})`;
 }
-
-
-
-
-

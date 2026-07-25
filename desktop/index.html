@@ -22,11 +22,11 @@
             </div>
             <div class="user-actions">
                 <span class="action-icon" id="user-greeting">Hello, Guest</span>
-                <span class="action-icon" id="compare-count">Compare (0)</span>
+                <a href="compare.html" class="action-icon" id="compare-count">Compare (0)</a>
                 <span class="action-icon" id="wishlist-count">Wishlist (0)</span>
                 <span class="action-icon" id="cart-count">Cart (0)</span>
                 <a href="cart.html" class="action-icon">View Cart</a>
-                <button type="button" class="action-icon" id="logout-btn" style="background: none; border: none; padding: 0; cursor: pointer;">Logout</button>
+                <button type="button" class="action-icon action-button" id="logout-btn">Logout</button>
             </div>
         </div>
         <nav>
@@ -147,6 +147,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="session-ui.js"></script>
+    <script src="compare-shared.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
