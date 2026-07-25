@@ -6,6 +6,9 @@
     <title>Login / Sign Up - Loyalbir</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
     <style>
         .auth-container {
             max-width: 420px;
@@ -79,6 +82,12 @@
             margin-top: 1.5rem;
             color: #555;
         }
+        .error-msg {
+            margin-top: 12px;
+            color: #d93025;
+            font-size: 14px;
+            min-height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -138,19 +147,44 @@
             </div>
 
             <div class="toggle-link" id="toggle-auth">Don't have an account? Sign up</div>
+            <div id="auth-message" class="error-msg"></div>
 
             <a href="cart.html" class="back-to-cart">← Back to Cart</a>
         </div>
     </main>
 
     <script>
-        // -------------------------------
-        //  Simple tab switching
-        // -------------------------------
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5kvUdUNvYVPjnOq_wjLnp0SMnTQXgTcw",
+            authDomain: "best-prices-46409.firebaseapp.com",
+            projectId: "best-prices-46409",
+            storageBucket: "best-prices-46409.firebasestorage.app",
+            messagingSenderId: "681370330797",
+            appId: "1:681370330797:web:7799facc4294bc1f204824",
+            measurementId: "G-3LC5XR4F6B"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
         const tabs = document.querySelectorAll('.tab');
         const forms = document.querySelectorAll('.form-container');
         const title = document.getElementById('form-title');
         const toggleLink = document.getElementById('toggle-auth');
+        const authMessage = document.getElementById('auth-message');
+
+        function getRedirectTarget() {
+            const redirect = new URLSearchParams(window.location.search).get('redirect');
+            return redirect || 'index.html';
+        }
+
+        function setAuthMessage(message) {
+            authMessage.textContent = message || '';
+        }
 
         function switchTo(tabName) {
             tabs.forEach(t => t.classList.remove('active'));
@@ -160,9 +194,39 @@
             document.getElementById(`${tabName}-form`).classList.add('active');
 
             title.textContent = tabName === 'login' ? 'Welcome Back' : 'Create Account';
-            toggleLink.textContent = tabName === 'login' 
-                ? "Don't have an account? Sign up" 
+            toggleLink.textContent = tabName === 'login'
+                ? "Don't have an account? Sign up"
                 : "Already have an account? Login";
+            setAuthMessage('');
+        }
+
+        async function saveUserToLocalStorage(user) {
+            try {
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        ...userData,
+                        email: user.email,
+                        uid: user.uid,
+                        loggedIn: true
+                    }));
+                } else {
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        firstName: user.displayName || "User",
+                        email: user.email,
+                        uid: user.uid,
+                        loggedIn: true
+                    }));
+                }
+            } catch (error) {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    firstName: user.displayName || "User",
+                    email: user.email,
+                    uid: user.uid,
+                    loggedIn: true
+                }));
+            }
         }
 
         tabs.forEach(tab => {
@@ -176,73 +240,78 @@
             switchTo(current === 'login' ? 'signup' : 'login');
         });
 
-        // -------------------------------
-        //  Very basic "authentication" (demo only)
-        // -------------------------------
-        const FAKE_USERS = [
-            { email: "test@loyalbir.com", password: "password123", name: "Test User" }
-        ];
-
-        function saveUserSession(user) {
-            localStorage.setItem('currentUser', JSON.stringify({
-                name: user.name,
-                email: user.email,
-                loggedIn: true,
-                loginTime: Date.now()
-            }));
-        }
-
-        function isLoggedIn() {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            return user && user.loggedIn;
-        }
-
-        // Login
-        document.getElementById('loginForm').addEventListener('submit', e => {
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            setAuthMessage('');
+
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
 
-            const user = FAKE_USERS.find(u => u.email === email && u.password === password);
-
-            if (user) {
-                saveUserSession(user);
-                alert('Login successful!');
-                const redirect = new URLSearchParams(window.location.search).get('redirect') || 'cart.html';
-                window.location.href = redirect;
-            } else {
-                alert('Invalid email or password');
-            }
-        });
-
-        // Signup (just saves — no real backend)
-        document.getElementById('signupForm').addEventListener('submit', e => {
-            e.preventDefault();
-            const name = document.getElementById('signup-name').value.trim();
-            const email = document.getElementById('signup-email').value.trim();
-            const password = document.getElementById('signup-password').value;
-
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters');
+            if (!email || !password) {
+                setAuthMessage('Please enter email and password.');
                 return;
             }
 
-            // In real app → send to backend + check if email exists
-            const user = { name, email, password };
-            saveUserSession(user);
-
-            alert('Account created! You are now logged in.');
-            const redirect = new URLSearchParams(window.location.search).get('redirect') || 'cart.html';
-            window.location.href = redirect;
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                await saveUserToLocalStorage(userCredential.user);
+                window.location.href = getRedirectTarget();
+            } catch (error) {
+                setAuthMessage(error.message);
+            }
         });
 
-        // If already logged in → go straight to checkout target
-        if (isLoggedIn()) {
-            const redirect = new URLSearchParams(window.location.search).get('redirect');
-            if (redirect) {
-                window.location.href = redirect;
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            setAuthMessage('');
+
+            const fullName = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const phone = document.getElementById('signup-phone').value.trim();
+            const password = document.getElementById('signup-password').value;
+
+            if (!fullName || !email || !password) {
+                setAuthMessage('Please fill all required fields.');
+                return;
             }
-        }
+
+            if (password.length < 6) {
+                setAuthMessage('Password must be at least 6 characters.');
+                return;
+            }
+
+            const nameParts = fullName.split(' ').filter(Boolean);
+            const firstName = nameParts[0] || 'User';
+            const lastName = nameParts.slice(1).join(' ');
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                await db.collection('users').doc(user.uid).set({
+                    firstName,
+                    lastName,
+                    phone,
+                    email,
+                    uid: user.uid,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                await saveUserToLocalStorage(user);
+                window.location.href = getRedirectTarget();
+            } catch (error) {
+                setAuthMessage(error.message);
+            }
+        });
+
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                return;
+            }
+
+            await saveUserToLocalStorage(user);
+            window.location.href = getRedirectTarget();
+        });
     </script>
 </body>
 </html>
