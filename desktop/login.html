@@ -170,6 +170,8 @@
 
         const auth = firebase.auth();
         const db = firebase.firestore();
+        const urlParams = new URLSearchParams(window.location.search);
+        const logoutRequested = urlParams.get('logout') === '1';
 
         const tabs = document.querySelectorAll('.tab');
         const forms = document.querySelectorAll('.form-container');
@@ -184,6 +186,16 @@
 
         function setAuthMessage(message) {
             authMessage.textContent = message || '';
+        }
+
+        function clearLocalSession() {
+            localStorage.removeItem('currentUser');
+            for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('firebase:authUser:')) {
+                    localStorage.removeItem(key);
+                }
+            }
         }
 
         function switchTo(tabName) {
@@ -305,6 +317,10 @@
         });
 
         auth.onAuthStateChanged(async (user) => {
+            if (logoutRequested) {
+                return;
+            }
+
             if (!user) {
                 return;
             }
@@ -312,6 +328,21 @@
             await saveUserToLocalStorage(user);
             window.location.href = getRedirectTarget();
         });
+
+        if (logoutRequested) {
+            (async () => {
+                clearLocalSession();
+                try {
+                    await auth.signOut();
+                } catch (error) {
+                    setAuthMessage(error.message);
+                } finally {
+                    const cleanUrl = `${window.location.pathname}${window.location.hash}`;
+                    window.history.replaceState({}, '', cleanUrl);
+                    switchTo('login');
+                }
+            })();
+        }
     </script>
 </body>
 </html>
