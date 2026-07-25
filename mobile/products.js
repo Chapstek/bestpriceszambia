@@ -7,28 +7,8 @@ const products = [
     { id: 4, code: "ZMW6336", name: "CAT S62 Smartphones", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
     { id: 5, code: "ZMW17325", name: "Louis Vuitton Handbags", description: "Louis Vuitton Leather Handbag PM", image: "louisv.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
     { id: 6, code: "ZMW3276", name: "G-Shocks", description: "Power Trainer Water-Resistant Digital Sport Watch - GBD-800UC-5", image: "GSHOCK1.png", rating: "★★★★★", brandId: 3, categoryId: 4 },
-    { id: 7, code: "ZMW4450.", name: "G-Shocks", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 5 }
+    { id: 7, code: "ZMW4450", name: "G-Shocks", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 5 }
 ];
-
-// Initialize Swiper
-const swiper = new Swiper('.swiper-container', {
-    slidesPerView: 4,
-    spaceBetween: 20,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    breakpoints: {
-        1024: { slidesPerView: 4 },
-        768: { slidesPerView: 3 },
-        480: { slidesPerView: 1.25 },
-        0: { slidesPerView: 1.25 }
-    }
-});
 
 // Load Products
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,13 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter products based on search query
         const urlParams = new URLSearchParams(window.location.search);
         const searchTerm = urlParams.get('search')?.toLowerCase() || '';
+        const categoryFilter = urlParams.get('category') ? parseInt(urlParams.get('category')) : null;
 
-        const filteredProducts = searchTerm
-            ? products.filter(product =>
-                  product.name.toLowerCase().includes(searchTerm) ||
-                  product.description.toLowerCase().includes(searchTerm)
-              )
-            : products;
+        const filteredProducts = products.filter(product => {
+            const matchesSearch = !searchTerm ||
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm);
+            const matchesCategory = !categoryFilter || product.categoryId === categoryFilter;
+            return matchesSearch && matchesCategory;
+        });
 
         // Display products as Swiper slides
         filteredProducts.forEach(product => {
@@ -70,9 +52,29 @@ document.addEventListener('DOMContentLoaded', () => {
             productList.appendChild(slide);
         });
 
-        // Update Swiper after adding slides
-        swiper.update();
+        if (filteredProducts.length === 0) {
+            productList.innerHTML = '<p style="padding:16px;">No products found.</p>';
+        }
     }
+
+    // Initialize Swiper after slides are added
+    const swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            480: { slidesPerView: 1.25 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 }
+        }
+    });
 
     // Search Functionality
     const searchBtn = document.getElementById('search-btn');
@@ -138,23 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Highlight Current Page in Top Navigation
     const topNavLinks = document.querySelectorAll('nav a');
-    if (topNavLinks) {
-        topNavLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const navProducts = document.getElementById('nav-products');
-        if (navProducts) navProducts.classList.add('active');
-    }
+    topNavLinks.forEach(link => { link.classList.remove('active'); });
+    const navProducts = document.getElementById('nav-products');
+    if (navProducts) navProducts.classList.add('active');
 
     // Highlight Current Page in Bottom Navigation
     const bottomNavLinks = document.querySelectorAll('.bottom-nav-item');
-    if (bottomNavLinks) {
-        bottomNavLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const bottomNavProducts = document.getElementById('bottom-nav-categories'); // "Apps" maps to Categories
-        if (bottomNavProducts) bottomNavProducts.classList.add('active');
-    }
+    bottomNavLinks.forEach(link => { link.classList.remove('active'); });
+    const bottomNavProducts = document.getElementById('bottom-nav-categories');
+    if (bottomNavProducts) bottomNavProducts.classList.add('active');
 
     // Breadcrumb Navigation
     function updateBreadcrumb() {

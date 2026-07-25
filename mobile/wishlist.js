@@ -1,12 +1,12 @@
 // Product Data (Simulated Database)
 const products = [
-    { id: 1, code: "ZMW29999.12", name: "Apple iPhone 15 Pro Max 256GB", description: "Platform OS iOS 17, upgradable to iOS 18.3.2 48 MP Front, 12 MP Back.", image: "iphones.png", rating: "★★★★★", brandId: 1, categoryId: 1 },
-    { id: 2, code: "ZMW4006.71", name: "G-Shock", description: "G-Shock", image: "g-shock.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
-    { id: 3, code: "ZMW4545.00", name: "Skirting", description: "Skirting and quarter round", image: "skirting.png", rating: "★★★★★", brandId: 4, categoryId: 5 },
-    { id: 4, code: "ZMW6336.38", name: "CAT S62 Smartphone", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
-    { id: 5, code: "ZMW4331.45", name: "G-Shock", description: "Smartwatches.", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
-    { id: 6, code: "ZMW3176.40", name: "G-Shock", description: "Power Trainer Water-Resistant Digital Sport Watch - GBD-800UC-5", image: "GSHOCK1.png", rating: "★★★★★", brandId: 3, categoryId: 4 },
-    { id: 7, code: "ZMW4331.45", name: "G-Shock", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★", brandId: 3, categoryId: 5 }
+    { id: 1, code: "ZMW29999", name: "Apple iPhone 15 Pro Max 256GB", description: "Platform OS iOS 17, upgradable to iOS 18.3.2 48 MP Front, 12 MP Back.", image: "iphones.png", rating: "★★★★★" },
+    { id: 2, code: "ZMW450", name: "Book", description: "Source Code : My Beginnings by Bill Gates 2025 Hardcover W/Dust-Jacket BRAND NEW", image: "source_code.png", rating: "★★★★★" },
+    { id: 3, code: "ZMW5486", name: "Nike Sneakers", description: "Size 10.5 Nike SB Dunk Low Bart Simpson", image: "nike.png", rating: "★★★★★" },
+    { id: 4, code: "ZMW6336", name: "CAT S62 Smartphones", description: "GSM + CDMA 4G Rugged 128GB Android 5.7", image: "CATS62.png", rating: "★★★★★" },
+    { id: 5, code: "ZMW17325", name: "Louis Vuitton Handbags", description: "Louis Vuitton Leather Handbag PM", image: "louisv.png", rating: "★★★★★" },
+    { id: 6, code: "ZMW3276", name: "G-Shocks", description: "Power Trainer Water-Resistant Digital Sport Watch - GBD-800UC-5", image: "GSHOCK1.png", rating: "★★★★★" },
+    { id: 7, code: "ZMW4450", name: "G-Shocks", description: "Black Dial Sports Quartz 200M Men's Watch GA-2300-1A", image: "GSHOCK.png", rating: "★★★★★" }
 ];
 
 // Load Wishlist Table
