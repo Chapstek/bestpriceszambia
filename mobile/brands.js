@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Highlight Current Page in Top Navigation
     const topNavLinks = document.querySelectorAll('nav a');
     topNavLinks.forEach(link => { link.classList.remove('active'); });
+    const navBrands = document.getElementById('nav-brands');
+    if (navBrands) navBrands.classList.add('active');
 
     // Highlight Current Page in Bottom Navigation
     const bottomNavLinks = document.querySelectorAll('.bottom-nav-item');
