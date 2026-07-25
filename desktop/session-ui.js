@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         userGreeting.textContent = 'Hello, Guest';
     }
 
-    // Keep logout visible as requested.
     logoutBtn.hidden = false;
 
     logoutBtn.addEventListener('click', () => {
@@ -66,6 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.removeItem(key);
             }
         }
-        window.location.href = 'login.html';
+        window.location.href = 'login.html?logout=1';
     });
 });
