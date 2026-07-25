@@ -26,7 +26,7 @@
             
             <div class="search-bar">
                 <input type="search" id="search-input" placeholder="Search products…" aria-label="Search products">
-                <button id="search-btn" aria-label="Search">
+                <button class="search-btn" id="search-btn" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -70,7 +70,7 @@
         <div class="nav-overlay" aria-hidden="true"></div>
     </header>
 
-    <nav class="breadcrumb" aria-label="Breadcrumb" aria-live="polite"></nav>
+    <div class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb" aria-live="polite"></div>
 
     <main>
         <section class="products" aria-labelledby="new-products-heading">
@@ -111,7 +111,7 @@
         <ul>
             <li><a href="index.html" class="active"><i class="fas fa-home"></i><span class="label">Home</span></a></li>
             <li><a href="categories.html"><i class="fas fa-th-large"></i><span class="label">Categories</span></a></li>
-            <li><a href="notifications.html"><i class="fas fa-bell"></i><span class="label">Notifications</span></a></li>
+            <li><a href="sellers.html"><i class="fas fa-bell"></i><span class="label">Notifications</span></a></li>
             <li><a href="compare.html"><i class="fas fa-balance-scale"></i><span class="label">Compare</span></a></li>
             <li><a href="wishlist.html"><i class="fas fa-heart"></i><span class="label">Wishlist</span></a></li>
         </ul>
@@ -119,183 +119,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // === USER GREETING ===
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.firstName) {
-            document.getElementById('first-name').textContent = currentUser.firstName;
-        }
-
-        // Logout
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (confirm("Are you sure you want to logout?")) {
-                    localStorage.removeItem('currentUser');
-                    window.location.href = '../index.html';   // Go back to login page
-                }
-            });
-        }
-
-        // Swiper
-        let swiper;
-        try {
-            swiper = new Swiper('.swiper', {
-                loop: true,
-                slidesPerView: 1.08,
-                centeredSlides: true,
-                spaceBetween: 16,
-                grabCursor: true,
-                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
-                breakpoints: {
-                    480:  { slidesPerView: 1.1 },
-                    640:  { slidesPerView: 2, centeredSlides: false },
-                    1024: { slidesPerView: 3, centeredSlides: false },
-                }
-            });
-        } catch (err) {
-            console.error('Swiper failed:', err);
-        }
-
-        // Sample products
-        const products = [
-            { id: 1, name: "Apple iPhone 15 Pro Max 256GB", price: "ZMW 29,999.12", img: "iphones.png" },
-            { id: 2, name: "Casio G-Shock", price: "ZMW 4,331.45", img: "GSHOCK.png" },
-            { id: 3, name: "CAT S62 Smartphone", price: "ZMW 6,336.38", img: "CATS62.png" },
-        ];
-
-        const productList = document.getElementById('product-list');
-        if (productList) {
-            products.forEach(p => {
-                const slide = document.createElement('div');
-                slide.className = 'swiper-slide';
-                slide.dataset.productId = p.id;
-                slide.innerHTML = `
-                    <div class="product-card">
-                        <a href="product.html?id=${p.id}" aria-label="View ${p.name}">
-                            <img src="${p.img}" alt="${p.name}" loading="lazy" width="300" height="300">
-                        </a>
-                        <div class="product-info">
-                            <p class="product-name">${p.name}</p>
-                            <p class="price">${p.price}</p>
-                            <div class="rating" aria-label="5 stars">★★★★★</div>
-                        </div>
-                        <div class="product-actions">
-                            <button type="button" class="add-to-cart" data-id="${p.id}">Add to Cart</button>
-                            <button type="button" class="add-to-wishlist" data-id="${p.id}">♡</button>
-                            <button type="button" class="add-to-compare" data-id="${p.id}">Compare</button>
-                        </div>
-                    </div>
-                `;
-                productList.appendChild(slide);
-            });
-            if (swiper) swiper.update();
-        }
-
-        // Update counts
-        function updateCounts() {
-            const cart     = JSON.parse(localStorage.getItem('cart') || '[]');
-            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-            const compare  = JSON.parse(localStorage.getItem('compare') || '[]');
-            
-            document.getElementById('cart-count').innerHTML = `Cart (${cart.length})`;
-            document.getElementById('wishlist-count').innerHTML = `Wishlist (${wishlist.length})`;
-            document.getElementById('compare-count').innerHTML = `Compare (${compare.length})`;
-        }
-
-        // Add to cart/wishlist/compare
-        document.addEventListener('click', e => {
-            const btn = e.target.closest('.add-to-cart, .add-to-wishlist, .add-to-compare');
-            if (!btn) return;
-
-            const id = parseInt(btn.dataset.id);
-            if (!id) return;
-
-            let key, msg;
-            if (btn.classList.contains('add-to-cart'))     { key = 'cart'; msg = 'Added to cart!'; }
-            else if (btn.classList.contains('add-to-wishlist')) { key = 'wishlist'; msg = 'Added to wishlist!'; }
-            else if (btn.classList.contains('add-to-compare'))  { key = 'compare'; msg = 'Added to compare!'; }
-
-            let list = JSON.parse(localStorage.getItem(key) || '[]');
-            if (list.includes(id)) {
-                alert('Already in list!');
-                return;
-            }
-
-            list.push(id);
-            localStorage.setItem(key, JSON.stringify(list));
-            updateCounts();
-
-            if (btn.classList.contains('add-to-wishlist')) {
-                btn.textContent = '❤️';
-                btn.style.color = 'red';
-            } else {
-                const orig = btn.textContent;
-                btn.textContent = '✓ Added';
-                btn.disabled = true;
-                setTimeout(() => {
-                    btn.textContent = orig;
-                    btn.disabled = false;
-                }, 1500);
-            }
-
-            alert(msg);
-        });
-
-        // Search
-        document.getElementById('search-btn')?.addEventListener('click', () => {
-            const term = document.getElementById('search-input')?.value?.trim();
-            if (term) {
-                window.location.href = `products.html?search=${encodeURIComponent(term)}`;
-            } else {
-                alert('Please enter a search term');
-            }
-        });
-
-        // Hamburger
-        const hamburger = document.querySelector('.hamburger');
-        const nav = document.getElementById('main-nav');
-        const overlay = document.querySelector('.nav-overlay');
-
-        hamburger?.addEventListener('click', () => {
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !expanded);
-            nav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-
-        overlay?.addEventListener('click', () => {
-            hamburger.setAttribute('aria-expanded', 'false');
-            nav.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-
-        // Newsletter
-        const newsletterform = document.getElementById('newsletter-form');
-        if (newsletterform) {
-            newsletterform.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('newsletter-email').value.trim();
-                if (!email) return;
-
-                const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
-                if (!subscribers.includes(email)) {
-                    subscribers.push(email);
-                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
-                }
-                alert('Thank you for subscribing!');
-                newsletterform.reset();
-            });
-        }
-
-        // Initial counts
-        updateCounts();
-    });
-    </script>
+    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

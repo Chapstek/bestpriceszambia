@@ -30,6 +30,25 @@ function updateCounts() {
 // ────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
+    // User greeting
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.firstName) {
+        const firstNameEl = document.getElementById('first-name');
+        if (firstNameEl) firstNameEl.textContent = currentUser.firstName;
+    }
+
+    // Logout
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                window.location.href = '../index.html';
+            }
+        });
+    }
+
     // 1. Initialize Swiper
     let swiper;
     try {
