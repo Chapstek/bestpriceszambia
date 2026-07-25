@@ -8,26 +8,6 @@ const categories = [
     { id: 5, name: "Flooring", description: "Flooring materials and accessories." }
 ];
 
-// Initialize Swiper
-const swiper = new Swiper('.swiper-container', {
-    slidesPerView: 3,
-    spaceBetween: 20,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    breakpoints: {
-        1024: { slidesPerView: 3 },
-        768: { slidesPerView: 2 },
-        480: { slidesPerView: 1.25 },
-        0: { slidesPerView: 1.25 }
-    }
-});
-
 // Load Categories
 document.addEventListener('DOMContentLoaded', () => {
     const categoryList = document.getElementById('category-list');
@@ -46,9 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             categoryList.appendChild(slide);
         });
-
-        swiper.update();
     }
+
+    // Initialize Swiper after slides are added
+    const swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            480: { slidesPerView: 1.25 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+        }
+    });
 
     // Search Functionality
     const searchBtn = document.getElementById('search-btn');
@@ -66,23 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Highlight Current Page in Top Navigation
     const topNavLinks = document.querySelectorAll('nav a');
-    if (topNavLinks) {
-        topNavLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const navCategories = document.getElementById('nav-categories');
-        if (navCategories) navCategories.classList.add('active');
-    }
+    topNavLinks.forEach(link => { link.classList.remove('active'); });
+    const navCategories = document.getElementById('nav-categories');
+    if (navCategories) navCategories.classList.add('active');
 
     // Highlight Current Page in Bottom Navigation
     const bottomNavLinks = document.querySelectorAll('.bottom-nav-item');
-    if (bottomNavLinks) {
-        bottomNavLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const bottomNavCategories = document.getElementById('bottom-nav-categories');
-        if (bottomNavCategories) bottomNavCategories.classList.add('active');
-    }
+    bottomNavLinks.forEach(link => { link.classList.remove('active'); });
+    const bottomNavCategories = document.getElementById('bottom-nav-categories');
+    if (bottomNavCategories) bottomNavCategories.classList.add('active');
 
     // Breadcrumb Navigation
     function updateBreadcrumb() {

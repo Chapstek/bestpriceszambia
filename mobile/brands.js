@@ -1,32 +1,12 @@
 // brands.js
 // Brand Data (Simulated Database)
 const brands = [
-     { id: 1, name: "Apple", description: "iphones", image: "iphones.png", rating: "★★★★★", brandId: 1, categoryId: 1 },
-    { id: 2,  name: "Nike", description: "Sneakers", image: "nike.png", rating: "★★★★★", brandId: 4, categoryId: 5 },
-    { id: 3,  name: "CAT", description: "Smartphones", image: "CATS62.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
-    { id: 4,  name: "Louis Vuitton", description: "Handbags", image: "louisv.png", rating: "★★★★★", brandId: 3, categoryId: 3 },
-    { id: 5,  name: "G-Shock", description: "Water-Resistant Digital Sport Watches", image: "GSHOCK1.png", rating: "★★★★★", brandId: 3, categoryId: 4 },
-	];
-
-// Initialize Swiper
-const swiper = new Swiper('.swiper-container', {
-    slidesPerView: 3,
-    spaceBetween: 20,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    breakpoints: {
-        1024: { slidesPerView: 3 },
-        768: { slidesPerView: 2 },
-        480: { slidesPerView: 1.25 },
-        0: { slidesPerView: 1.25 }
-    }
-});
+    { id: 1, name: "Apple", description: "iphones", image: "iphones.png" },
+    { id: 2, name: "Nike", description: "Sneakers", image: "nike.png" },
+    { id: 3, name: "CAT", description: "Smartphones", image: "CATS62.png" },
+    { id: 4, name: "Louis Vuitton", description: "Handbags", image: "louisv.png" },
+    { id: 5, name: "G-Shock", description: "Water-Resistant Digital Sport Watches", image: "GSHOCK1.png" }
+];
 
 // Load Brands
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,9 +28,26 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             brandList.appendChild(slide);
         });
-
-        swiper.update();
     }
+
+    // Initialize Swiper after slides are added
+    const swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            480: { slidesPerView: 1.25 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+        }
+    });
 
     // Search Functionality
     const searchBtn = document.getElementById('search-btn');
@@ -68,23 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Highlight Current Page in Top Navigation
     const topNavLinks = document.querySelectorAll('nav a');
-    if (topNavLinks) {
-        topNavLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const navBrands = document.getElementById('nav-brands');
-        if (navBrands) navBrands.classList.add('active');
-    }
+    topNavLinks.forEach(link => { link.classList.remove('active'); });
+    const navBrands = document.getElementById('nav-brands');
+    if (navBrands) navBrands.classList.add('active');
 
     // Highlight Current Page in Bottom Navigation
     const bottomNavLinks = document.querySelectorAll('.bottom-nav-item');
-    if (bottomNavLinks) {
-        bottomNavLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const bottomNavBrands = document.getElementById('bottom-nav-categories'); // "Apps" maps to Categories
-        if (bottomNavBrands) bottomNavBrands.classList.add('active');
-    }
+    bottomNavLinks.forEach(link => { link.classList.remove('active'); });
+    const bottomNavBrands = document.getElementById('bottom-nav-categories');
+    if (bottomNavBrands) bottomNavBrands.classList.add('active');
 
     // Breadcrumb Navigation
     function updateBreadcrumb() {

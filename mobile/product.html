@@ -2,25 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - E-Commerce</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Product Details - Loyalbir</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <a href="index.html">Home</a>
-        <a href="sellers.html">Sellers</a>
-        <a href="brands.html">All Brands</a>
-        <a href="categories.html">All Categories</a>
-        <a href="products.html">Products</a>
-        <a href="services.html">Services</a>
-        <a href="notifications.html">Notifications</a>
-        <a href="compare.html" id="compare-count">Compare (0)</a>
-        <a href="wishlist.html" id="wishlist-count">Wishlist (0)</a>
-        <a href="cart.html" id="cart-count">Cart (0)</a>
-    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <a href="index.html" aria-label="Loyalbir Home">
+                    <img src="loyalbir.png" alt="Loyalbir logo" width="140" height="40">
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="search" id="search-input" placeholder="Search products…" aria-label="Search products">
+                <button class="search-btn" id="search-btn" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="user-actions">
+                <a href="compare.html" class="action-icon" id="compare-count" aria-label="Compare products">Compare (0)</a>
+                <a href="wishlist.html" class="action-icon" id="wishlist-count" aria-label="Wishlist">Wishlist (0)</a>
+                <a href="cart.html" class="action-icon" id="cart-count" aria-label="Shopping cart">Cart (0)</a>
+                <a href="cart.html" class="action-icon">View Cart</a>
+                <div class="user-greeting" id="user-greeting" style="margin-left:15px;font-weight:500;">
+                    Hi, <span id="first-name">Guest</span>
+                </div>
+                <a href="#" id="logout-btn" style="margin-left:10px;color:#dc3545;text-decoration:none;">Logout</a>
+            </div>
+        </div>
+
+        <button type="button" class="hamburger" aria-label="Toggle main menu" aria-expanded="false">☰</button>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sellers.html">Sellers</a></li>
+                <li><a href="brands.html">All Brands</a></li>
+                <li><a href="categories.html">All Categories</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+        <div class="nav-overlay"></div>
+    </header>
 
     <!-- Breadcrumb -->
     <div id="breadcrumb" class="breadcrumb"></div>
@@ -31,7 +65,7 @@
     <!-- Related Products Section -->
     <section id="related-products" class="related-products">
         <h2>Related Products</h2>
-        <div class="swiper-container related-swiper">
+        <div class="swiper related-swiper">
             <div class="swiper-wrapper" id="related-product-list"></div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
@@ -40,15 +74,18 @@
     </section>
 
     <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="wishlist.html">Wishlist</a>
-        <a href="cart.html">Cart</a>
+    <nav class="bottom-nav" aria-label="Main mobile navigation">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i><span class="label">Home</span></a></li>
+            <li><a href="categories.html"><i class="fas fa-th-large"></i><span class="label">Categories</span></a></li>
+            <li><a href="compare.html"><i class="fas fa-balance-scale"></i><span class="label">Compare</span></a></li>
+            <li><a href="wishlist.html"><i class="fas fa-heart"></i><span class="label">Wishlist</span></a></li>
+            <li><a href="cart.html"><i class="fas fa-shopping-cart"></i><span class="label">Cart</span></a></li>
+        </ul>
     </nav>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
     <script src="data.js"></script>
     <script src="script.js"></script>
     <script src="product.js"></script>
