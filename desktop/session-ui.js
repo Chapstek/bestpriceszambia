@@ -51,11 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isLoggedIn) {
         userGreeting.textContent = `Hello, ${displayName || 'User'}`;
-        logoutBtn.hidden = false;
     } else {
         userGreeting.textContent = 'Hello, Guest';
-        logoutBtn.hidden = true;
     }
+
+    // Keep logout visible as requested.
+    logoutBtn.hidden = false;
 
     logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('currentUser');
