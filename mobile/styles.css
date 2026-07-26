@@ -84,13 +84,6 @@ footer {
 }
 
 /* Fix 4 – If Font Awesome is not loading */
-.search-btn::before {
-    content: "\f002";             /* fa-search fallback */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 1.4rem;
-}
-
 /* ============================================
    HEADER & TOP NAV
    ============================================ */
@@ -219,6 +212,43 @@ header {
 
 /* Mobile menu */
 @media (max-width: 768px) {
+  .header-top {
+    gap: 12px;
+  }
+
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-bar {
+    order: 3;
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .user-actions {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    white-space: normal;
+    font-size: 0.85rem;
+  }
+
+  .user-greeting {
+    width: 100%;
+    margin-left: 0 !important;
+    text-align: center;
+  }
+
+  #logout-btn {
+    margin-left: 0 !important;
+  }
+
   .hamburger {
     display: block;
   }
