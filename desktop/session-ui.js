@@ -75,7 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     logoutBtn.hidden = !isLoggedIn;
 
-    logoutBtn.addEventListener('click', () => {
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            if (window.sessionState) {
+                await window.sessionState.syncNow();
+                window.sessionState.clearSessionState();
+            }
+        } catch (error) {
+            console.warn('Unable to save session state before logout', error);
+        }
+
         localStorage.removeItem('currentUser');
         for (let i = localStorage.length - 1; i >= 0; i -= 1) {
             const key = localStorage.key(i);

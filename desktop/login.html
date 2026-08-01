@@ -9,6 +9,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="session-state.js"></script>
     <style>
         .auth-container {
             max-width: 420px;
@@ -189,6 +190,9 @@
         }
 
         function clearLocalSession() {
+            if (window.sessionState) {
+                window.sessionState.clearSessionState();
+            }
             localStorage.removeItem('currentUser');
             for (let i = localStorage.length - 1; i >= 0; i -= 1) {
                 const key = localStorage.key(i);
@@ -267,6 +271,9 @@
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 await saveUserToLocalStorage(userCredential.user);
+                if (window.sessionState) {
+                    await window.sessionState.restoreForUser(userCredential.user);
+                }
                 window.location.href = getRedirectTarget();
             } catch (error) {
                 setAuthMessage(error.message);
@@ -311,6 +318,9 @@
                 }, { merge: true });
 
                 await saveUserToLocalStorage(user);
+                if (window.sessionState) {
+                    await window.sessionState.restoreForUser(user);
+                }
                 window.location.href = getRedirectTarget();
             } catch (error) {
                 setAuthMessage(error.message);
@@ -327,6 +337,9 @@
             }
 
             await saveUserToLocalStorage(user);
+            if (window.sessionState) {
+                await window.sessionState.restoreForUser(user);
+            }
             window.location.href = getRedirectTarget();
         });
 
