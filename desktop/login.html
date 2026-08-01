@@ -189,6 +189,9 @@
         }
 
         function clearLocalSession() {
+            if (window.sessionState) {
+                window.sessionState.clearSessionState();
+            }
             localStorage.removeItem('currentUser');
             for (let i = localStorage.length - 1; i >= 0; i -= 1) {
                 const key = localStorage.key(i);
@@ -267,6 +270,9 @@
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 await saveUserToLocalStorage(userCredential.user);
+                if (window.sessionState) {
+                    await window.sessionState.restoreForUser(userCredential.user);
+                }
                 window.location.href = getRedirectTarget();
             } catch (error) {
                 setAuthMessage(error.message);
@@ -311,6 +317,9 @@
                 }, { merge: true });
 
                 await saveUserToLocalStorage(user);
+                if (window.sessionState) {
+                    await window.sessionState.restoreForUser(user);
+                }
                 window.location.href = getRedirectTarget();
             } catch (error) {
                 setAuthMessage(error.message);
@@ -327,6 +336,9 @@
             }
 
             await saveUserToLocalStorage(user);
+            if (window.sessionState) {
+                await window.sessionState.restoreForUser(user);
+            }
             window.location.href = getRedirectTarget();
         });
 
@@ -345,5 +357,6 @@
             })();
         }
     </script>
+    <script src="session-state.js"></script>
 </body>
 </html>
