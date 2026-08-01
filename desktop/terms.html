@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Loyalbir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="loyalbir.png" alt="Loyalbir" style="height: 150px;">
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="I am looking for..." aria-label="Search products">
+                <button type="button" class="search-btn" id="search-btn">Search</button>
+            </div>
+            <div class="user-actions">
+                <span class="action-icon" id="user-greeting">Hello, Guest</span>
+                <a href="compare.html" class="action-icon" id="compare-count">Compare (0)</a>
+                <span class="action-icon" id="wishlist-count">Wishlist (0)</span>
+                <span class="action-icon" id="cart-count">Cart (0)</span>
+                <a href="cart.html" class="action-icon">View Cart</a>
+                <button type="button" class="action-icon action-button" id="logout-btn" hidden>Logout</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="brands.html" id="nav-brands">All Brands</a></li>
+                <li><a href="categories.html" id="nav-categories">All Categories</a></li>
+                <li><a href="products.html" id="nav-products">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb" id="breadcrumb"></div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="about-us" aria-labelledby="terms-heading">
+            <div class="section-header">
+                <h2 id="terms-heading">Terms of Service</h2>
+            </div>
+            <div class="about-content">
+                <p>Last updated: March 22, 2025</p>
+                <p>Welcome to Loyalbir. These Terms of Service ("Terms") govern your use of our website and services. By accessing or using our website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you must not use our website.</p>
+
+                <h3>1. Use of Our Services</h3>
+                <p>You may use our services only as permitted by law. We may suspend or terminate your access if you violate these Terms or engage in any prohibited activities, including but not limited to fraudulent behavior, misuse of our platform, or violation of intellectual property rights.</p>
+
+                <h3>2. Product Listings and Purchases</h3>
+                <p>We strive to provide accurate product information, but we do not guarantee the accuracy, completeness, or reliability of any product listings. All purchases are subject to availability, and we reserve the right to cancel orders at our discretion. Prices are subject to change without notice.</p>
+
+                <h3>3. Payments</h3>
+                <p>All payments must be made through the payment methods provided on our website. You agree to provide accurate payment information and authorize us to charge the specified amount for your purchases. We are not responsible for any payment disputes between you and your payment provider.</p>
+
+                <h3>4. Intellectual Property</h3>
+                <p>All content on our website, including text, images, logos, and designs, is the property of Loyalbir or its licensors and is protected by copyright and trademark laws. You may not reproduce, distribute, or create derivative works of our content without our express written permission.</p>
+
+                <h3>5. Limitation of Liability</h3>
+                <p>To the fullest extent permitted by law, Loyalbir shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of our website or services, including but not limited to loss of profits, data, or goodwill.</p>
+
+                <h3>6. Governing Law</h3>
+                <p>These Terms shall be governed by and construed in accordance with the laws of Zambia, without regard to its conflict of law principles. Any disputes arising under these Terms shall be resolved in court.</p>
+
+                <h3>7. Changes to These Terms</h3>
+                <p>We may update these Terms from time to time. We will notify you of any changes by posting the updated Terms on our website. Your continued use of our website after such changes constitutes your acceptance of the updated Terms.</p>
+
+                <h3>8. Contact Us</h3>
+                <p>If you have any questions about these Terms, please contact us at <a href="mailto:support@loyalbir.com">support@loyalbir.com</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="session-ui.js"></script>
+    <script src="compare-shared.js"></script>
+    <script src="terms.js"></script>
+</body>
+</html>
