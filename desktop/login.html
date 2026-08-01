@@ -77,6 +77,16 @@
             color: #0066cc;
             cursor: pointer;
         }
+        .inline-link {
+            background: none;
+            border: none;
+            color: #0066cc;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin: 0;
+            padding: 0;
+            text-decoration: underline;
+        }
         .back-to-cart {
             display: block;
             text-align: center;
@@ -88,6 +98,9 @@
             color: #d93025;
             font-size: 14px;
             min-height: 20px;
+        }
+        .error-msg.success {
+            color: #188038;
         }
     </style>
 </head>
@@ -120,6 +133,7 @@
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" required>
                     </div>
+                    <button type="button" class="inline-link" id="forgot-password-btn">Forgot password?</button>
                     <button type="submit" class="auth-btn">Login</button>
                 </form>
             </div>
@@ -185,8 +199,9 @@
             return redirect || 'index.html';
         }
 
-        function setAuthMessage(message) {
+        function setAuthMessage(message, isError = true) {
             authMessage.textContent = message || '';
+            authMessage.classList.toggle('success', !!message && !isError);
         }
 
         function clearLocalSession() {
@@ -275,6 +290,23 @@
                     await window.sessionState.restoreForUser(userCredential.user);
                 }
                 window.location.href = getRedirectTarget();
+            } catch (error) {
+                setAuthMessage(error.message);
+            }
+        });
+
+        document.getElementById('forgot-password-btn').addEventListener('click', async () => {
+            const email = document.getElementById('login-email').value.trim();
+            setAuthMessage('');
+
+            if (!email) {
+                setAuthMessage('Enter your email address first.');
+                return;
+            }
+
+            try {
+                await auth.sendPasswordResetEmail(email);
+                setAuthMessage('Password reset email sent. Check your inbox.', false);
             } catch (error) {
                 setAuthMessage(error.message);
             }

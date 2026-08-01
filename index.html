@@ -50,7 +50,20 @@
         }
         button:hover { background: #0056b3; }
         .toggle { color: #007bff; cursor: pointer; text-decoration: underline; }
-        .error { color: red; margin: 10px 0; }
+        .message { margin: 10px 0; }
+        .message.error { color: red; }
+        .message.success { color: green; }
+        .text-link {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            text-decoration: underline;
+            width: auto;
+        }
+        .text-link:hover { background: none; color: #0056b3; }
         .hidden { display: none; }
     </style>
 </head>
@@ -63,6 +76,7 @@
         <div id="loginForm">
             <input type="email" id="loginEmail" placeholder="Email" required>
             <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="button" class="text-link" onclick="forgotPassword()">Forgot password?</button>
             <button onclick="login()">Sign In</button>
         </div>
 
@@ -86,7 +100,7 @@
             <span class="toggle" onclick="toggleForm()">Sign Up</span>
         </p>
         
-        <p id="message" class="error"></p>
+        <p id="message" class="message"></p>
     </div>
 
     <script>
@@ -107,6 +121,12 @@
 
         let isLogin = true;
 
+        function setMessage(text, isError = true) {
+            const message = document.getElementById('message');
+            message.textContent = text || '';
+            message.className = `message ${text ? (isError ? 'error' : 'success') : ''}`.trim();
+        }
+
         function toggleForm() {
             isLogin = !isLogin;
             document.getElementById('loginForm').classList.toggle('hidden');
@@ -115,12 +135,13 @@
             document.getElementById('toggleText').innerHTML = isLogin 
                 ? `Don't have an account? <span class="toggle" onclick="toggleForm()">Sign Up</span>`
                 : `Already have an account? <span class="toggle" onclick="toggleForm()">Sign In</span>`;
+            setMessage('');
         }
 
         async function login() {
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
-            const message = document.getElementById('message');
+            setMessage('');
 
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
@@ -128,13 +149,12 @@
                 await saveUserToLocalStorage(user);
                 redirectToDashboard();
             } catch (error) {
-                message.textContent = error.message;
+                setMessage(error.message);
             }
         }
 
         async function signup() {
-            const message = document.getElementById('message');
-            message.textContent = "";
+            setMessage('');
 
             const userData = {
                 firstName: document.getElementById('firstName').value.trim(),
@@ -150,7 +170,7 @@
             const password = document.getElementById('signupPassword').value;
 
             if (!userData.email || !password || !userData.firstName || !userData.lastName) {
-                message.textContent = "Please fill all required fields";
+                setMessage("Please fill all required fields");
                 return;
             }
 
@@ -170,7 +190,23 @@
                 redirectToDashboard();
 
             } catch (error) {
-                message.textContent = error.message;
+                setMessage(error.message);
+            }
+        }
+
+        async function forgotPassword() {
+            const email = document.getElementById('loginEmail').value.trim();
+
+            if (!email) {
+                setMessage('Enter your email address first.');
+                return;
+            }
+
+            try {
+                await auth.sendPasswordResetEmail(email);
+                setMessage('Password reset email sent. Check your inbox.', false);
+            } catch (error) {
+                setMessage(error.message);
             }
         }
 
