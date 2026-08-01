@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loyalbir - Login</title>
-    
+
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
@@ -89,17 +89,17 @@
             <input type="text" id="postalCode" placeholder="Postal Code" required>
             <input type="text" id="state" placeholder="State / Province" required>
             <input type="text" id="country" placeholder="Country" value="United States" required>
-            
+
             <input type="email" id="signupEmail" placeholder="Email" required>
             <input type="password" id="signupPassword" placeholder="Create Password" required>
-            
+
             <button onclick="signup()">Create Account</button>
         </div>
 
-        <p id="toggleText">Don't have an account? 
+        <p id="toggleText">Don't have an account?
             <span class="toggle" onclick="toggleForm()">Sign Up</span>
         </p>
-        
+
         <p id="message" class="message"></p>
     </div>
 
@@ -132,7 +132,7 @@
             document.getElementById('loginForm').classList.toggle('hidden');
             document.getElementById('signupForm').classList.toggle('hidden');
             document.getElementById('formTitle').textContent = isLogin ? 'Sign In' : 'Create Account';
-            document.getElementById('toggleText').innerHTML = isLogin 
+            document.getElementById('toggleText').innerHTML = isLogin
                 ? `Don't have an account? <span class="toggle" onclick="toggleForm()">Sign Up</span>`
                 : `Already have an account? <span class="toggle" onclick="toggleForm()">Sign In</span>`;
             setMessage('');
