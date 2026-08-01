@@ -26,43 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateBreadcrumb() {
         const breadcrumb = document.getElementById('breadcrumb');
-        const currentPage = window.location.pathname.split('/').pop();
-        let navHistory = JSON.parse(sessionStorage.getItem('navHistory')) || [];
-
-        if (navHistory.length === 0 || navHistory[navHistory.length - 1].url !== currentPage) {
-            navHistory = [{ url: 'index.html', title: 'Home' }];
-            navHistory.push({ url: currentPage, title: 'About Us' });
-        }
-
-        if (navHistory.length > 5) {
-            navHistory = navHistory.slice(-5);
-        }
-
-        sessionStorage.setItem('navHistory', JSON.stringify(navHistory));
-
         breadcrumb.textContent = '';
-        navHistory.forEach((item, index) => {
-            const safeUrl = typeof item.url === 'string' && /^[a-z0-9_-]+\.html(?:\?[^#]*)?$/i.test(item.url)
-                ? item.url
-                : 'index.html';
-            const safeTitle = typeof item.title === 'string' ? item.title : '';
 
-            if (index < navHistory.length - 1) {
-                const link = document.createElement('a');
-                link.href = safeUrl;
-                link.textContent = safeTitle;
-                breadcrumb.appendChild(link);
+        const homeLink = document.createElement('a');
+        homeLink.href = 'index.html';
+        homeLink.textContent = 'Home';
+        breadcrumb.appendChild(homeLink);
 
-                const separator = document.createElement('span');
-                separator.className = 'separator';
-                separator.textContent = '>';
-                breadcrumb.appendChild(separator);
-            } else {
-                const current = document.createElement('span');
-                current.textContent = safeTitle;
-                breadcrumb.appendChild(current);
-            }
-        });
+        const separator = document.createElement('span');
+        separator.className = 'separator';
+        separator.textContent = '>';
+        breadcrumb.appendChild(separator);
+
+        const current = document.createElement('span');
+        current.textContent = 'About Us';
+        breadcrumb.appendChild(current);
     }
 
     updateBreadcrumb();
