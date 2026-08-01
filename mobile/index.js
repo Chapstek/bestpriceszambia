@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // User greeting
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const authLink = document.getElementById('auth-link');
     if (currentUser && currentUser.firstName) {
         const firstNameEl = document.getElementById('first-name');
         if (firstNameEl) firstNameEl.textContent = currentUser.firstName;
@@ -39,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logout
     const logoutBtn = document.getElementById('logout-btn');
+    if (authLink) {
+        authLink.hidden = !!currentUser;
+    }
+    if (logoutBtn) {
+        logoutBtn.hidden = !currentUser;
+    }
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -228,5 +235,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateBreadcrumb();
 });
-
 
