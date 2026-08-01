@@ -822,6 +822,23 @@ footer {
     background-color: #0056b3;
 }
 
+/* About Section */
+.about-us {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-content h3 {
+    margin: 20px 0 10px;
+    color: #333;
+}
+
+.about-content p {
+    color: #666;
+    line-height: 1.6;
+}
+
 @media (max-width: 768px) {
     .product-details {
         flex-direction: column;
