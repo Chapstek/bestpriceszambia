@@ -26,6 +26,28 @@ const categories = [
     { id: 6, name: "Cell Phones & Smartphones" } // Added category for iPhone
 ];
 
+const firebaseConfig = {
+    apiKey: "AIzaSyBnd1RfxdJ1cPJn2rGu_PV0DVyNgWfG2Hk",
+    authDomain: "best-prices-46409.firebaseapp.com",
+    projectId: "best-prices-46409",
+    storageBucket: "best-prices-46409.firebasestorage.app",
+    messagingSenderId: "343974704605",
+    appId: "1:343974704605:web:6d760ad753db9487d431f1",
+    measurementId: "G-0R6SM4ENPN"
+};
+
+function getFirestoreDb() {
+    if (typeof firebase === 'undefined' || !firebase.apps) {
+        return null;
+    }
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+
+    return firebase.firestore();
+}
+
 // Initialize Swiper
 const swiper = new Swiper('.swiper-container', {
     slidesPerView: 4,
@@ -135,15 +157,31 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.style.display = 'none';
     });
 
-    leadMagnetForm.addEventListener('submit', (e) => {
+    leadMagnetForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('email-input').value;
+        const email = document.getElementById('email-input').value.trim();
         const leads = JSON.parse(localStorage.getItem('leads')) || [];
         leads.push(email);
         localStorage.setItem('leads', JSON.stringify(leads));
+
+        const db = getFirestoreDb();
+        if (db) {
+            try {
+                await db.collection('popupLeads').add({
+                    email,
+                    source: 'desktop-lead-magnet-popup',
+                    page: window.location.pathname,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            } catch (error) {
+                console.error('Failed to save popup lead to Firestore:', error);
+            }
+        }
+
         console.log('Lead captured:', email);
         alert('Thank you! Download link will be sent to your email.');
         popup.style.display = 'none';
+        leadMagnetForm.reset();
     });
 
     // Handle Newsletter Form Submission
