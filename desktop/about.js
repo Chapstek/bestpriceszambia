@@ -42,10 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         breadcrumb.textContent = '';
         navHistory.forEach((item, index) => {
+            const safeUrl = typeof item.url === 'string' && /^[a-z0-9_-]+\.html(?:\?[^#]*)?$/i.test(item.url)
+                ? item.url
+                : 'index.html';
+            const safeTitle = typeof item.title === 'string' ? item.title : '';
+
             if (index < navHistory.length - 1) {
                 const link = document.createElement('a');
-                link.href = item.url;
-                link.textContent = item.title;
+                link.href = safeUrl;
+                link.textContent = safeTitle;
                 breadcrumb.appendChild(link);
 
                 const separator = document.createElement('span');
@@ -54,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 breadcrumb.appendChild(separator);
             } else {
                 const current = document.createElement('span');
-                current.textContent = item.title;
+                current.textContent = safeTitle;
                 breadcrumb.appendChild(current);
             }
         });
