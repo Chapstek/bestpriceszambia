@@ -45,9 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
+    function getDisplayName(user) {
+        if (!user) {
+            return '';
+        }
+
+        const firstName = typeof user.firstName === 'string' ? user.firstName.trim() : '';
+        const lastName = typeof user.lastName === 'string' ? user.lastName.trim() : '';
+        const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
+
+        return fullName
+            || (typeof user.fullName === 'string' && user.fullName.trim())
+            || (typeof user.name === 'string' && user.name.trim())
+            || (typeof user.displayName === 'string' && user.displayName.trim())
+            || (typeof user.username === 'string' && user.username.trim())
+            || (typeof user.email === 'string' && user.email.trim())
+            || '';
+    }
+
     const sessionUser = getSessionUser();
     const isLoggedIn = !!sessionUser && sessionUser.loggedIn !== false;
-    const displayName = sessionUser && (sessionUser.firstName || sessionUser.name || sessionUser.username || sessionUser.email);
+    const displayName = getDisplayName(sessionUser);
 
     if (isLoggedIn) {
         userGreeting.textContent = `Hello, ${displayName || 'User'}`;
@@ -55,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userGreeting.textContent = 'Hello, Guest';
     }
 
-    logoutBtn.hidden = false;
+    logoutBtn.hidden = !isLoggedIn;
 
     logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('currentUser');
