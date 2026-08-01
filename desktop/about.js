@@ -40,16 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sessionStorage.setItem('navHistory', JSON.stringify(navHistory));
 
-        let breadcrumbHTML = '';
+        breadcrumb.textContent = '';
         navHistory.forEach((item, index) => {
             if (index < navHistory.length - 1) {
-                breadcrumbHTML += `<a href="${item.url}">${item.title}</a><span class="separator">></span>`;
+                const link = document.createElement('a');
+                link.href = item.url;
+                link.textContent = item.title;
+                breadcrumb.appendChild(link);
+
+                const separator = document.createElement('span');
+                separator.className = 'separator';
+                separator.textContent = '>';
+                breadcrumb.appendChild(separator);
             } else {
-                breadcrumbHTML += `<span>${item.title}</span>`;
+                const current = document.createElement('span');
+                current.textContent = item.title;
+                breadcrumb.appendChild(current);
             }
         });
-
-        breadcrumb.innerHTML = breadcrumbHTML;
     }
 
     updateBreadcrumb();
