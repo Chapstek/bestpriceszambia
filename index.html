@@ -160,9 +160,10 @@
 
                 await db.collection('users').doc(user.uid).set({
                     ...userData,
+                    uid: user.uid,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    uid: user.uid
-                });
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
 
                 await saveUserToLocalStorage(user);
                 alert("Account created successfully! Welcome!");
