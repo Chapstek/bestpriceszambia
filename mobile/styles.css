@@ -1141,3 +1141,165 @@ footer {
   max-width: 400px;
   margin: 0 auto;
 }
+
+/* ============================================
+   MOBILE LAYOUT REFINEMENTS
+   ============================================ */
+
+/* -- Header: hide verbose user-actions on small screens; bottom-nav covers it -- */
+@media (max-width: 768px) {
+  .user-actions {
+    display: none;
+  }
+
+  /* Keep header row from wrapping awkwardly */
+  .header-top {
+    flex-wrap: nowrap;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  /* Logo: prevent it shrinking too small */
+  .logo img {
+    max-height: 34px;
+  }
+
+  /* Hamburger always visible on mobile */
+  .hamburger {
+    flex-shrink: 0;
+  }
+
+  /* Give search bar room to fill remaining space */
+  .search-bar {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* -- Bottom-nav: support old `.bottom-nav-item` + `.icon` pattern -- */
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.72rem;
+  gap: 3px;
+}
+
+.bottom-nav-item .icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item.active {
+  color: #007bff;
+}
+
+/* -- Section padding for listing pages -- */
+.sellers,
+.categories,
+.brands {
+  padding: 16px 16px 0;
+}
+
+.sellers h2,
+.categories h2,
+.brands h2,
+.compare h2,
+.cart h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+/* -- Hide swiper arrows on mobile (touch swiping is used instead) -- */
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+
+/* -- Footer newsletter: stack vertically on very small screens -- */
+@media (max-width: 480px) {
+  .newsletter-input,
+  #newsletter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #newsletter-email {
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+
+  #newsletter-form button {
+    border-radius: 6px;
+  }
+}
+
+/* -- Footer links: wrap on small screens -- */
+@media (max-width: 480px) {
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .footer-links a {
+    margin: 0;
+  }
+}
+
+/* -- Cart / wishlist / compare tables: ensure horizontal scroll on mobile -- */
+@media (max-width: 768px) {
+  .cart-table,
+  .wishlist-table,
+  .compare-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* -- Product actions: stack on very small screens -- */
+@media (max-width: 380px) {
+  .product-actions {
+    flex-direction: column;
+  }
+
+  .add-to-cart,
+  .add-to-compare {
+    width: 100%;
+  }
+
+  .add-to-wishlist {
+    width: 100%;
+    border-radius: 8px;
+    height: auto;
+    padding: 10px;
+  }
+}
+
+/* -- Checkout form: full-width fields on mobile -- */
+@media (max-width: 768px) {
+  .cart-actions {
+    flex-direction: column;
+  }
+
+  .continue-shopping,
+  .proceed-to-checkout,
+  .checkout-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* -- Modal: full-width on very small screens -- */
+@media (max-width: 480px) {
+  .modal-content {
+    max-width: 95%;
+    padding: 20px 16px;
+  }
+}
