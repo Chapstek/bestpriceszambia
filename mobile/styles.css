@@ -1223,8 +1223,7 @@ footer {
 
 /* -- Footer newsletter: stack vertically on very small screens -- */
 @media (max-width: 480px) {
-  .newsletter-input,
-  #newsletter-form {
+  .newsletter-input {
     flex-direction: column;
     align-items: stretch;
   }
@@ -1259,7 +1258,6 @@ footer {
   .wishlist-table,
   .compare-table {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -1282,7 +1280,7 @@ footer {
   }
 }
 
-/* -- Checkout form: full-width fields on mobile -- */
+/* -- Cart action buttons: stack and full-width on mobile -- */
 @media (max-width: 768px) {
   .cart-actions {
     flex-direction: column;
