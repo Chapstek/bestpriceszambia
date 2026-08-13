@@ -4,7 +4,7 @@ const products = [
     { id: 2, code: "ZMW4331.45", name: "G-Shock GA-2100-1A1", description: "Shock resistant, 200m water resistance, World time, Stopwatch & countdown timer, LED light", image: "GSHOCK.png", rating: "★★★★★", brandId: 2, categoryId: 2 },
     { id: 3, code: "ZMW6336.38", name: "CAT S-62", description: "Display: 5.7″ IPS LCD, Full HD+ (1080 × 2160) with Corning Gorilla Glass 6 protection — works with wet fingers & gloves.Qualcomm Snapdragon 660 octa-core (mid-range, reliable)RAM & Storage: 4 GB RAM + 128 GB storage (expandable with microSD).Operating System: Android 10, upgradable to Android 11.", image: "CATS62.png", rating: "★★★★★", brandId: 4, categoryId: 3 },
     { id: 4, code: "ZMW18391.27", name: "Apple iPhone 15 Pro Max 256GB", description: "Latest Black Titanium iPhone with 256GB storage, perfect for professionals.", image: "Iphone_15_pro_black_titanium.jpg", rating: "★★★★★", brandId: 5, categoryId: 4 },
-    { id: 5, code: "ZMW12297.95", name: "Apple iPhone 13 Pro Max 256GB", description: "Latest Golden iPhone with 256GB storage, perfect for professionals.", image: "IPhone_13_pro_max_gold.png", rating: "★★★★★", brandId: 5, categoryId: 5 }
+    { id: 5, code: "ZMW12297.95", name: "Apple iPhone 13 Pro Max 256GB", description: "Latest Golden iPhone with 256GB storage, perfect for professionals.", image: "Iphone_13_pro_max_gold.png", rating: "★★★★★", brandId: 5, categoryId: 5 }
 ];
 
 // Brand Data (Simulated Database)
