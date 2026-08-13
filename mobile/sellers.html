@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sellers - loyalbir</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -18,7 +18,9 @@
             </div>
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="I am looking for...">
-                <button class="search-btn" id="search-btn">Search</button>
+                <button class="search-btn" id="search-btn" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
             <div class="user-actions">
                 <a href="compare.html" class="action-icon" id="compare-count">Compare (0)</a>
@@ -71,8 +73,10 @@
         <div class="newsletter">
             <h3>Subscribe to Our Newsletter</h3>
             <form id="newsletter-form">
-                <input type="email" id="newsletter-email" placeholder="Your email" required>
-                <button type="submit">Subscribe</button>
+                <div class="newsletter-input">
+                    <input type="email" id="newsletter-email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </div>
             </form>
         </div>
     </footer>
