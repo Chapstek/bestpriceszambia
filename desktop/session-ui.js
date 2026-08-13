@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const userGreeting = document.getElementById('user-greeting');
     const logoutBtn = document.getElementById('logout-btn');
+    const FIREBASE_AUTH_SDK_URL = 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js';
+    const LOGIN_PAGE_URL = 'login.html';
 
     if (!userGreeting || !logoutBtn) {
         return;
@@ -63,6 +65,69 @@ document.addEventListener('DOMContentLoaded', () => {
             || '';
     }
 
+    function clearLocalAuthState() {
+        localStorage.removeItem('currentUser');
+        for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith('firebase:authUser:')) {
+                localStorage.removeItem(key);
+            }
+        }
+    }
+
+    async function ensureFirebaseAuthSdk() {
+        if (typeof firebase === 'undefined') {
+            return false;
+        }
+
+        if (typeof firebase.auth === 'function') {
+            return true;
+        }
+
+        if (!window.__bpFirebaseAuthSdkPromise) {
+            window.__bpFirebaseAuthSdkPromise = new Promise((resolve) => {
+                const existingScript = document.querySelector(`script[src="${FIREBASE_AUTH_SDK_URL}"]`);
+                if (existingScript) {
+                    if (typeof firebase.auth === 'function') {
+                        resolve(true);
+                        return;
+                    }
+                    existingScript.addEventListener('load', () => resolve(typeof firebase.auth === 'function'), { once: true });
+                    existingScript.addEventListener('error', () => resolve(false), { once: true });
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = FIREBASE_AUTH_SDK_URL;
+                script.async = true;
+                script.addEventListener('load', () => resolve(typeof firebase.auth === 'function'), { once: true });
+                script.addEventListener('error', () => resolve(false), { once: true });
+                document.head.appendChild(script);
+            });
+        }
+
+        return window.__bpFirebaseAuthSdkPromise;
+    }
+
+    async function signOutFirebaseSession() {
+        if (!window.sessionState || typeof window.sessionState.getCurrentUser !== 'function') {
+            return false;
+        }
+
+        const currentUser = window.sessionState.getCurrentUser();
+        if (!currentUser || !currentUser.uid) {
+            return false;
+        }
+
+        const hasAuthSdk = await ensureFirebaseAuthSdk();
+        if (!hasAuthSdk || typeof firebase.auth !== 'function') {
+            return false;
+        }
+
+        await firebase.auth().signOut();
+        return true;
+    }
+
     const sessionUser = getSessionUser();
     const isLoggedIn = !!sessionUser && sessionUser.loggedIn !== false;
     const displayName = getDisplayName(sessionUser);
@@ -76,22 +141,33 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutBtn.hidden = !isLoggedIn;
 
     logoutBtn.addEventListener('click', async () => {
+        let signedOutInDesktop = false;
+
         try {
             if (window.sessionState) {
                 await window.sessionState.syncNow();
-                window.sessionState.clearSessionState();
             }
         } catch (error) {
             console.warn('Unable to save session state before logout', error);
         }
 
-        localStorage.removeItem('currentUser');
-        for (let i = localStorage.length - 1; i >= 0; i -= 1) {
-            const key = localStorage.key(i);
-            if (key && key.startsWith('firebase:authUser:')) {
-                localStorage.removeItem(key);
+        try {
+            signedOutInDesktop = await signOutFirebaseSession();
+        } catch (error) {
+            console.warn('Unable to end Firebase auth session in desktop page', error);
+        }
+
+        if (window.sessionState) {
+            try {
+                window.sessionState.clearSessionState();
+            } catch (error) {
+                console.warn('Unable to clear local session state during logout', error);
             }
         }
-        window.location.href = 'login.html?logout=1';
+        clearLocalAuthState();
+
+        window.location.href = signedOutInDesktop
+            ? LOGIN_PAGE_URL
+            : `${LOGIN_PAGE_URL}?logout=1`;
     });
 });
